@@ -3,9 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link  rel="stylesheet" href="./css/styles.css">
+    <title>Memorión</title>
 </head>
-<body>
+<body class="principal">
+    <h1>¡Memorión!</h1>
+    <table>
+        <tr>
+            <th>Nombre de usuario:</th>
+            <td>
+                <input type="text" id="usuario">
+            </td>
+        </tr>
+        <tr>
+            <th>Modo de juego:</th>
+            <td>
+                <select id="modo">
+                    <option selected disabled>Seleccione un modo:</option>
+                    <option value="normal">Normal</option>
+                    <option value="flash">Flash</option>
+    
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Nivel:</th>
+            <td>
+                <select id="nivel">
+                    <option selected disabled>Seleccione un nivel:</option>
+                    <option value="facil">Fácil</option>
+                    <option value="medio">Medio</option>
+                    <option value="dificil">Difícil</option>
+    
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Tema:</th>
+            <td>
+                <select id="tema">
+                    <option selected disabled>Seleccione un tema:</option>
+                    <option value="tema1">Tema 1</option>
+                    <option value="tema2">Tema 2</option>
+                    <option value="tema3">Tema 3</option>
+                    <option value="tema4">Tema 4</option>
+    
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Temporizador:</th>
+            <td>
+                <select id="tema">
+                    <option selected value="activado">Activado</option>
+                    <option value="desactivado">Desactivado</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">
+                <button id="insertar">¡Empezar juego!</button>
+            </th>
+        </tr>
+        </table>
     
 </body>
 </html>
