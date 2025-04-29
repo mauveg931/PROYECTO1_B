@@ -83,3 +83,19 @@ html, body {
   text-align: center;
   margin-bottom: 1%;
 }
+
+.campojuego{
+    border: 3px solid rgb(104, 0, 0);
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 15px;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    display: grid;
+    margin-bottom: 15%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 40%;
+    background-color: rgb(90, 90, 90);
+}
