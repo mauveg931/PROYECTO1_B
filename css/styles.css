@@ -23,7 +23,7 @@ th{
 
 .boton{
     border-radius: 5px;
-    background: linear-gradient( purple, black);
+    background: linear-gradient( rgb(74, 7, 74), black);
     color: rgb(178, 176, 176);
     width: 40%;
     height: 40%;
@@ -55,8 +55,9 @@ html, body {
     flex: 1;
   }
   
-  footer {
-    background-color: #f0f0f0;
+  .piep {
+    background-color: black;
+    color: whitesmoke;
     padding: 10px;
   }
   
