@@ -30,6 +30,9 @@ th{
 }
 /*Tablero*/
 
+.fondo1{
+    height: 88%;
+}
 html, body {
     height: 100%;
     margin: 0;
