@@ -1,0 +1,102 @@
+
+/*Index*/
+.principal{
+    text-align: center;
+    padding: 15px;
+    background-color: #780817;
+    color: black;
+}
+table{
+    border: 3px solid black;
+    margin: 0 auto;
+    width: 50%;
+}
+.titulo{
+    padding-top: 2%;
+    font-size: 500%;
+}
+
+th{
+    padding: 9px;
+    font-size: xx-large;
+}
+
+.boton{
+    border-radius: 5px;
+    background: linear-gradient( rgb(74, 7, 74), black);
+    color: rgb(178, 176, 176);
+    width: 40%;
+    height: 40%;
+}
+.pie1{
+    background-color: black;
+    color: #f0f0f0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 7%;
+    text-align: center;
+
+}
+/*Tablero*/
+
+.fondo1{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contenido {
+    flex: 1;
+  }
+  
+  .piep {
+    background-color: black;
+    color: whitesmoke;
+    padding: 10px;
+  }
+  
+  .marco {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  
+  .tiempo, .puntos, .volver {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.volver{
+  width: 30%;
+  text-align: center;
+  margin-bottom: 1%;
+}
+
+.campojuego{
+    border: 5px solid rgb(0, 0, 0);
+    display: grid;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 15px;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    display: grid;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    height: 70%;
+    backdrop-filter: blur(15px);
+}

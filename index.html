@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="./css/styles.css">
+    <title>Memorium</title>
+</head>
+<body class="principal">
+    <header class="encabezado">
+        <h1 class="titulo">Memorium</h1>
+    </header>
+    
+    <table>
+        <tr>
+            <th>Nombre de usuario:</th>
+            <td>
+                <input type="text" id="usuario">
+            </td>
+        </tr>
+        <tr>
+            <th>Modo de juego:</th>
+            <td>
+                <select id="modo">
+                    <option selected disabled>Seleccione un modo:</option>
+                    <option value="normal">Normal</option>
+                    <option value="flash">Flash</option>
+    
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Nivel:</th>
+            <td>
+                <select id="nivel">
+                    <option selected disabled>Seleccione un nivel:</option>
+                    <option value="facil">Fácil</option>
+                    <option value="medio">Medio</option>
+                    <option value="dificil">Difícil</option>
+    
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Tema:</th>
+            <td>
+                <select id="tema">
+                    <option selected disabled>Seleccione un tema:</option>
+                    <option value="poker">Póker</option>
+                    <option value="mario">Mario Bros</option>
+                    <option value="castlevania">Castlevania</option>
+                    <option value="plantas">Plantas</option>
+    
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>Temporizador:</th>
+            <td>
+                <select id="temporizador">
+                    <option selected value="activado">Activado</option>
+                    <option value="desactivado">Desactivado</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">
+              <button class="boton" id="insertar">¡Empezar juego!</button>
+            </th>
+          </tr>
+          
+        </table>
+    <footer class="pie1">
+        <p>
+            &copy;Hugo Vila, Mauro Vega, Zeltia Ferreiro. 2025
+        </p>
+    </footer>
+    <script defer src="scripts/scripts-index.js"></script>
+</body>
+</html>
