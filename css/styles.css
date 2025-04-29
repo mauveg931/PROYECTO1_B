@@ -52,8 +52,13 @@ html, body {
     align-items: flex-end;
   }
   
-  .tiempo, .puntos {
+  .tiempo, .puntos, .volver {
     display: flex;
     flex-direction: column;
   }
   
+.volver{
+  width: 30%;
+  text-align: center;
+  margin-bottom: 1%;
+}
