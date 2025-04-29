@@ -2,19 +2,31 @@
 /*Index*/
 .principal{
     text-align: center;
-    padding: 20px;
+    padding: 15px;
     background-color: #780817;
     color: black;
 }
 table{
+    border: 3px solid black;
     margin: 0 auto;
+    width: 50%;
 }
-<<<<<<< HEAD
+.titulo{
+    padding-top: 2%;
+    font-size: 500%;
+}
 
-=======
->>>>>>> 98675a6f2fbca666dc93b564d3a9ca0eac524614
 th{
-    padding: 10px;
+    padding: 9px;
+    font-size: xx-large;
+}
+
+.boton{
+    border-radius: 5px;
+    background: linear-gradient( purple, black);
+    color: whitesmoke;
+    width: 40%;
+    height: 40%;
 }
 /*Tablero*/
 
