@@ -9,6 +9,9 @@
 table{
     margin: 0 auto;
 }
+th{
+    padding: 10px;
+}
 /*Tablero*/
 .marco{
     position: fixed;
