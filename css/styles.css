@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /*Index*/
 .principal{
     text-align: center;
@@ -9,3 +10,18 @@ table{
     margin: 0 auto;
 }
 /*Tablero*/
+=======
+.marco{
+    position: fixed;
+    bottom: 0;
+    border: 1px solid black;
+
+}
+.tiempo{
+
+}
+.puntos{
+    text-align: right;
+    float: right;
+}
+>>>>>>> Stashed changes
