@@ -85,7 +85,7 @@ html, body {
 }
 
 .campojuego{
-    border: 3px solid rgb(104, 0, 0);
+    border: 5px solid rgb(0, 0, 0);
     display: grid;
     grid-template-columns: repeat(4, 100px);
     grid-gap: 15px;
@@ -93,9 +93,10 @@ html, body {
     padding: 40px;
     text-align: center;
     display: grid;
-    margin-bottom: 15%;
-    margin-left: 10%;
-    margin-right: 10%;
-    height: 40%;
-    background-color: rgb(90, 90, 90);
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+    height: 70%;
+    backdrop-filter: blur(15px);
 }
