@@ -28,6 +28,10 @@ th{
     width: 40%;
     height: 40%;
 }
+
+.boton:hover{
+  background: linear-gradient(black, purple);
+}
 .pie1{
     background-color: black;
     color: #f0f0f0;
