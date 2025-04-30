@@ -23,15 +23,17 @@ Tablero.
 ## SESION 2 (30/04/2025)
 
 **RESUMEN**
-
+Arreglos en el tablero e implementación de funcionalidades.
+Validaciones y diseño.
 **DIFICULTADES**
-
+Ajustar las cartas al tamaño del tablero.
 **SOLUCIONES**
-
+Cambiar el ratio de aspecto y el alto y ancho. 
 **FUENTES CONSULTADAS**
-
+https://www.youtube.com/watch?v=RwjgfNX41TE&t=2282s&ab_channel=midulive
+https://www.w3schools.com/css/css3_flexbox_container.asp
 **DECISIONES TÉCNICAS**
-
+Cambios en el fondo, cambios en las transiciones.
 **IDEAS DE MEJORA**
 
 
