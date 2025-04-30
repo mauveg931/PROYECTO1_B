@@ -110,7 +110,7 @@ html, body {
   justify-content: center;
   cursor: grab;
   user-select: none;
-
+  margin-left: 30%;
 }
 .campojuego{
     border: 5px solid rgb(0, 0, 0);
