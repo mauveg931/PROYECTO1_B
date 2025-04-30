@@ -68,8 +68,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     } else if (nivel === "personalizado") {
+      // variables para personalizacion
         fila = filas;
         colum = columnas;
+        fila = 3;
+        colum = 7;
         grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
 
     } else {
