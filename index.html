@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link  rel="stylesheet" href="./css/styles.css">
+    <link rel="icon" type="image/jpg" href="img/iconoWeb.png">
     <title>Memorium</title>
 </head>
 <body class="principal">
+    <video class="videoFondo" src="img/videoFondoWeb.mp4" autoplay muted loop playsinline></video>
     <header class="encabezado">
         <h1 class="titulo">Memorium</h1>
     </header>
@@ -22,7 +24,7 @@
             <th>Modo de juego:</th>
             <td>
                 <select id="modo">
-                    <option selected disabled>Seleccione un modo:</option>
+                    <option value="" selected disabled>Seleccione un modo:</option>
                     <option value="normal">Normal</option>
                     <option value="flash">Flash</option>
     
@@ -33,11 +35,11 @@
             <th>Nivel:</th>
             <td>
                 <select id="nivel">
-                    <option selected disabled>Seleccione un nivel:</option>
+                    <option value="" selected disabled>Seleccione un nivel:</option>
                     <option value="facil">Fácil</option>
                     <option value="medio">Medio</option>
                     <option value="dificil">Difícil</option>
-    
+                    <option value="personalizado">Personalizado</option>
                 </select>
             </td>
         </tr>
@@ -45,12 +47,10 @@
             <th>Tema:</th>
             <td>
                 <select id="tema">
-                    <option selected disabled>Seleccione un tema:</option>
+                    <option value="" selected disabled>Seleccione un tema:</option>
                     <option value="poker">Póker</option>
                     <option value="mario">Mario Bros</option>
                     <option value="castlevania">Castlevania</option>
-                    <option value="plantas">Plantas</option>
-    
                 </select>
             </td>
         </tr>
@@ -58,7 +58,7 @@
             <th>Temporizador:</th>
             <td>
                 <select id="temporizador">
-                    <option selected value="activado">Activado</option>
+                    <option value="activado">Activado</option>
                     <option value="desactivado">Desactivado</option>
                 </select>
             </td>

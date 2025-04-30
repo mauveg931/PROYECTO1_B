@@ -3,13 +3,27 @@
 .principal{
     text-align: center;
     padding: 15px;
-    background-color: #780817;
     color: black;
 }
+.videoFondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 105%;
+}
+
 table{
     border: 3px solid black;
     margin: 0 auto;
     width: 50%;
+    background-color: #000000;
+    opacity: 70%;
+    color: white;
+    
 }
 .titulo{
     padding-top: 2%;
@@ -28,6 +42,10 @@ th{
     width: 40%;
     height: 40%;
 }
+
+.boton:hover{
+  background: linear-gradient(black, purple);
+}
 .pie1{
     background-color: black;
     color: #f0f0f0;
@@ -40,7 +58,20 @@ th{
 
 }
 /*Tablero*/
-
+.datosJuego{
+  margin-top: 2%;
+  width: 99%;
+  height: 4%;
+  margin-left: 2%;
+  margin-right: 2%;
+  color: #f0f0f0;
+  display: flex;
+  gap: 150px; 
+  align-items: center;
+}
+h2{
+  inline-size: auto;
+}
 .fondo1{
   position: absolute;
   top: 0;
@@ -84,19 +115,43 @@ html, body {
   margin-bottom: 1%;
 }
 
+.celda{
+  width: 15%;
+  height: 90%;
+  border: 2px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  margin-left: 30%;
+}
 .campojuego{
     border: 5px solid rgb(0, 0, 0);
     display: grid;
-    grid-template-columns: repeat(4, 100px);
-    grid-gap: 15px;
+   
+    grid-gap: 10px;
     justify-content: center;
     padding: 40px;
     text-align: center;
-    display: grid;
     margin-top: 2%;
     margin-bottom: 2%;
     margin-left: 2%;
     margin-right: 2%;
-    height: 70%;
+    height: 70vh;
     backdrop-filter: blur(15px);
+
+    animation-name: pulse;
+    animation-duration: 3s;
+}
+
+@keyframes pulse {
+  0%{
+    opacity: 0;
+  }
+
+  50%{
+    opacity: 50;
+  }
+  
 }
