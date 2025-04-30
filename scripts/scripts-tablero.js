@@ -52,16 +52,33 @@ document.addEventListener("DOMContentLoaded", () => {
     if (nivel === "facil") {
         fila = 4; 
         colum = 4;
+        grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
+
+
     } else if (nivel === "medio") {
         fila = 5; 
         colum = 4;
+        grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
+
+
     } else if (nivel === "dificil") {
         fila = 6; 
         colum = 6;
+        grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
+
+
     } else if (nivel === "personalizado") {
       // variables para personalizacion
+<<<<<<< Updated upstream
         fila = filas;
         colum = columnas;
+=======
+        fila = 3;
+        colum = 7;
+        grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
+
+
+>>>>>>> Stashed changes
     } else {
         console.warn("Nivel no reconocido:", nivel);
         return;
