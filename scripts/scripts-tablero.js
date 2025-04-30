@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     const nivel = localStorage.getItem("nivel");
     const fondoImg = document.getElementsByClassName("fondo1")[0];
+    const temporizador = localStorage.getItem("temporizador");
+    const temp = document.getElementById("tiempo");
+
+    if(temporizador === "desactivado"){
+        temp.textContent="TEMPORIZADOR DESACTIVADO";
+    }
 
     if (fondoImg) {
         if (nivel == "facil") {
@@ -11,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             fondoImg.setAttribute("src", "../img/fondoazul.png");
         }
     }
+
 
     
     const grid = document.getElementById('campojuego');

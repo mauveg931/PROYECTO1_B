@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const tema = document.getElementById("tema").value;
       const temporizador = document.getElementById("temporizador").value;
 
-        if(nivel === ""|| nombre === null || modo === "" || tema === "" || temporizador === ""){
+        if(nivel === ""|| nombre === null || modo === "" || tema === ""){
           alert("Rellena todos los campos");
         }else{
           localStorage.setItem("nivel", nivel);
-          localStorage.setItem("tiempo", temporizador);
+          localStorage.setItem("temporizador", temporizador);
           window.location.href = "html/tablero.html";
         }
     });
