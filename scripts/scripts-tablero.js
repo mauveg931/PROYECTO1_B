@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+
     //Datos introducidos en index
     nombreScreen.textContent = "Nombre: " + nombre;
     modoScreen.textContent = "Modo: " + modo;
@@ -40,20 +41,38 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     
-
-
-    
     const grid = document.getElementById('campojuego');
-    let fila = 4; //cambiar las variables para cambiar las cartas del tablero
-    let colum = 4;
+        
+   
+
+    let fila, colum;
+
+    if (nivel === "facil") {
+        fila = 4; 
+        colum = 4;
+    } else if (nivel === "medio") {
+        fila = 5; 
+        colum = 4;
+    } else if (nivel === "dificil") {
+        fila = 6; 
+        colum = 6;
+    } else if (nivel === "personalizado") {
+      // variables para personalizacion
+        fila = 3;
+        colum = 7;
+    } else {
+        console.warn("Nivel no reconocido:", nivel);
+        return;
+    }
 
     for (let i = 0; i < fila * colum; i++) {
         const celda = document.createElement('div');
         celda.className = 'celda';
-        celda.textContent = 'carta'; //fotos cartas
+        celda.textContent = 'carta'; 
         celda.addEventListener('click', () => {
-            //dar vuelta a la carta
+            //volteo de carta
         });
         grid.appendChild(celda);
     }
-});
+
+    });
