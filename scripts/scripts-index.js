@@ -32,6 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
         columnas = prompt("Introduce el número de columnas (solo números):");
         if (columnas === null) return; 
       } while (!/^\d+$/.test(columnas) || parseInt(columnas) <= 0);
+      filas = parseInt(filas);
+      columnas = parseInt(columnas);
+    
+      const total = filas * columnas;
+    
+      if (total % 2 !== 0 || total > 28) {
+        alert("El número total de cartas debe ser par y menor o igual a 28.");
+        return; 
+      }
 
       localStorage.setItem("filas", filas);
       localStorage.setItem("columnas", columnas);
