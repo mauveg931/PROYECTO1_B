@@ -106,7 +106,17 @@ html, body {
     animation-name: pulse;
     animation-duration: 3s;
 }
+.celda{
+  width: 50px;
+  height: 50px;
+  border: 1px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
 
+}
 @keyframes pulse {
   0%{
     opacity: 0;
@@ -118,15 +128,4 @@ html, body {
     opacity: 50;
   }
   
-}
-.celda{
-  width: 50px;
-  height: 50px;
-  border: 1px solid #000000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  user-select: none;
-
 }
