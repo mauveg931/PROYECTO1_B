@@ -14,15 +14,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     
     const grid = document.getElementById('campojuego');
-    let fila = 4;
+    let fila = 4; //cambiar las variables para cambiar las cartas del tablero
     let colum = 4;
 
     for (let i = 0; i < fila * colum; i++) {
         const celda = document.createElement('div');
         celda.className = 'celda';
-        celda.textContent = i + 1; //fotos cartas
+        celda.textContent = 'carta'; //fotos cartas
         celda.addEventListener('click', () => {
-            alert(`Volteo`); //dar la vuelta cartas
+            //dar vuelta a la carta
         });
         grid.appendChild(celda);
     }
