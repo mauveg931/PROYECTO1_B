@@ -101,6 +101,17 @@ html, body {
   margin-bottom: 1%;
 }
 
+.celda{
+  width: 15%;
+  height: 90%;
+  border: 2px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+
+}
 .campojuego{
     border: 5px solid rgb(0, 0, 0);
     display: grid;
@@ -119,18 +130,7 @@ html, body {
     animation-name: pulse;
     animation-duration: 3s;
 }
-.celda{
-  width: 50%;
-  height: 20px;
-  aspect-ratio: 3 / 4;
-  border: 2px solid #000000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  user-select: none;
 
-}
 @keyframes pulse {
   0%{
     opacity: 0;

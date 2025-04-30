@@ -68,17 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     } else if (nivel === "personalizado") {
-      // variables para personalizacion
-<<<<<<< Updated upstream
         fila = filas;
         colum = columnas;
-=======
-        fila = 3;
-        colum = 7;
         grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
 
-
->>>>>>> Stashed changes
     } else {
         console.warn("Nivel no reconocido:", nivel);
         return;
