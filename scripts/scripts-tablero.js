@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
             fondoImg.setAttribute("src", "../img/fondoverde.png");
         } else if (nivel == "dificil") {
             fondoImg.setAttribute("src", "../img/fondoazul.png");
-        } else if (nivel== "personalizado"){
-            fondoImg.setAttribute("src", "../img/fondoazul.png");
+        } else if (nivel == "personalizado"){
+            fondoImg.setAttribute("src", "../img/fondorosa.png");
         }
     }
 
