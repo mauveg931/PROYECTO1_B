@@ -19,3 +19,19 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter
 Decisión en los colores y el diseño de la página.
 **IDEAS DE MEJORA**
 Tablero.
+
+## SESION 2 (30/04/2025)
+
+**RESUMEN**
+
+**DIFICULTADES**
+
+**SOLUCIONES**
+
+**FUENTES CONSULTADAS**
+
+**DECISIONES TÉCNICAS**
+
+**IDEAS DE MEJORA**
+
+
