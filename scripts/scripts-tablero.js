@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const nombre = localStorage.getItem("nombre");
     const modo = localStorage.getItem("modo");
     const tema = localStorage.getItem("tema");
+    const filas = localStorage.getItem("filas");
+    const columnas = localStorage.getItem("columnas");
     //variables propias
     const nombreScreen = document.getElementById("nombreScreen");
     const modoScreen = document.getElementById("modoScreen");
@@ -58,8 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
         colum = 6;
     } else if (nivel === "personalizado") {
       // variables para personalizacion
-        fila = 3;
-        colum = 7;
+        fila = filas;
+        colum = columnas;
     } else {
         console.warn("Nivel no reconocido:", nivel);
         return;
