@@ -44,7 +44,20 @@ th{
 
 }
 /*Tablero*/
-
+.datosJuego{
+  margin-top: 2%;
+  width: 99%;
+  height: 4%;
+  margin-left: 2%;
+  margin-right: 2%;
+  color: #f0f0f0;
+  display: flex;
+  gap: 150px; 
+  align-items: center;
+}
+h2{
+  inline-size: auto;
+}
 .fondo1{
   position: absolute;
   top: 0;

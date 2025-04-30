@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }else{
           localStorage.setItem("nivel", nivel);
           localStorage.setItem("temporizador", temporizador);
+          localStorage.setItem("nombre", nombre);
+          localStorage.setItem("modo", modo);
+          localStorage.setItem("tema", tema);
           window.location.href = "html/tablero.html";
         }
     });

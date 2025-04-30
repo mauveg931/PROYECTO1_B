@@ -1,13 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    //variables tomadas de index
     const nivel = localStorage.getItem("nivel");
-    const fondoImg = document.getElementsByClassName("fondo1")[0];
     const temporizador = localStorage.getItem("temporizador");
+    const nombre = localStorage.getItem("nombre");
+    const modo = localStorage.getItem("modo");
+    const tema = localStorage.getItem("tema");
+    //variables propias
+    const nombreScreen = document.getElementById("nombreScreen");
+    const modoScreen = document.getElementById("modoScreen");
+    const nivelScreen = document.getElementById("nivelScreen");
+    const tematicaScreen = document.getElementById("tematicaScreen"); 
+    const fondoImg = document.getElementsByClassName("fondo1")[0];  
     const temp = document.getElementById("tiempo");
 
+
+    //cambiar el temporizador
     if(temporizador === "desactivado"){
         temp.textContent="TEMPORIZADOR DESACTIVADO";
     }
-
+    //Cambiar la imagen de fondo
     if (fondoImg) {
         if (nivel == "facil") {
             fondoImg.setAttribute("src", "../img/fondorojo.png");
@@ -19,6 +31,15 @@ document.addEventListener("DOMContentLoaded", () => {
             fondoImg.setAttribute("src", "../img/fondoazul.png");
         }
     }
+
+    //Datos introducidos en index
+    nombreScreen.textContent = "Nombre: " + nombre;
+    modoScreen.textContent = "Modo: " + modo;
+    nivelScreen.textContent = "Nivel: " + nivel;
+    tematicaScreen.textContent = "Tema: " + tema;
+    
+
+    
 
 
     
