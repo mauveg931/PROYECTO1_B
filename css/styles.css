@@ -216,23 +216,19 @@ html, body {
     justify-content: space-between;
     align-items: flex-end;
   }
-  
+ 
   .tiempo, .puntos, .volver {
     display: flex;
     flex-direction: column;
   }
-  
 .volver{
   width: 30%;
   text-align: center;
   margin-bottom: 1%;
 }
-
 .celda {
-
     width: 100%;
-    aspect-ratio: 1 / 1; /* Mantiene una proporción cuadrada */
-
+    aspect-ratio: 1 / 1; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -289,7 +285,7 @@ html, body {
 }
 .carta {
     perspective: 1000px;
-    width: 40%;
+    width: 30%;
     height: 100%;
     margin-left: 30%;
   }
