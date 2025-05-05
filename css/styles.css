@@ -196,5 +196,6 @@ html, body {
 
 .carta.volteada .contenedor-carta {
   transform: rotateY(180deg);
+  border-color: #000000;
 }
 
