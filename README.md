@@ -39,3 +39,17 @@ Cambios en el fondo, cambios en las transiciones.
 **IDEAS DE MEJORA**
 
 
+## SESION 2 (05/05/2025)
+**RESUMEN**
+Arreglos en las cartas. 
+**DIFICULTADES**
+Lógica de volteo de cartas
+**SOLUCIONES**
+
+**FUENTES CONSULTADAS**
+https://www.w3schools.com/howto/howto_css_flip_card.asp
+https://www.youtube.com/watch?v=IZIMGn1Usrw
+
+**DECISIONES TÉCNICAS**
+
+**IDEAS DE MEJORA**
