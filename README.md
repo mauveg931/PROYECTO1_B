@@ -41,15 +41,20 @@ Cambios en el fondo, cambios en las transiciones.
 
 ## SESION 2 (05/05/2025)
 **RESUMEN**
-Arreglos en las cartas. 
+Arreglos en las cartas, lógica de volteo, contadores de intentos y aciertos, comparación de cartas.
 **DIFICULTADES**
-Lógica de volteo de cartas
+Lógica de volteo de cartas.
 **SOLUCIONES**
-
+Cambio en la lógica y el CSS
 **FUENTES CONSULTADAS**
+https://hugoparrales.com/efecto-volteo-carta/
+https://www.youtube.com/watch?v=O1QSb-dTJtY&t=225s&ab_channel=AsensiDev
+https://www.youtube.com/watch?v=RwjgfNX41TE&t=4378s&ab_channel=midulive
+https://codepen.io/natewiley/pen/BawOqL
 https://www.w3schools.com/howto/howto_css_flip_card.asp
 https://www.youtube.com/watch?v=IZIMGn1Usrw
 
 **DECISIONES TÉCNICAS**
 
 **IDEAS DE MEJORA**
+Funcionalidad del temporizador, pulir fuentes y cohesión en la estética.
