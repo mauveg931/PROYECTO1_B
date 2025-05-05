@@ -197,9 +197,5 @@ html, body {
 
 .carta.volteada .contenedor-carta {
   transform: rotateY(180deg);
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 }
 
