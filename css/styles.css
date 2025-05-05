@@ -115,21 +115,30 @@ html, body {
   margin-bottom: 1%;
 }
 
-.celda{
-  width: 15%;
-  height: 90%;
-  border: 2px solid #000000;
+.celda {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: grab;
-  user-select: none;
-  margin-left: 30%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
+
+
+.celda img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; 
+  pointer-events: none;
+}
+
+
 .campojuego{
+  width: 90vw;              
+  height: 80vh;
     border: 5px solid rgb(0, 0, 0);
     display: grid;
-   
     grid-gap: 10px;
     justify-content: center;
     padding: 40px;

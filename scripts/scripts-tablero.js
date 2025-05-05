@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const tematicaScreen = document.getElementById("tematicaScreen"); 
     const fondoImg = document.getElementsByClassName("fondo1")[0];  
     const temp = document.getElementById("tiempo");
+    const campojuego = document.getElementById("campojuego");
+    
 
 
     //cambiar el temporizador
@@ -53,41 +55,51 @@ document.addEventListener("DOMContentLoaded", () => {
         fila = 4; 
         colum = 4;
         grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
+        grid.style.gridTemplateRows = `repeat(${fila}, 1fr)`;
 
 
     } else if (nivel === "medio") {
         fila = 5; 
         colum = 4;
         grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
+        grid.style.gridTemplateRows = `repeat(${fila}, 1fr)`;
 
 
     } else if (nivel === "dificil") {
         fila = 6; 
         colum = 6;
         grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
+        grid.style.gridTemplateRows = `repeat(${fila}, 1fr)`;
 
 
     } else if (nivel === "personalizado") {
       // variables para personalizacion
         fila = filas;
         colum = columnas;
-        fila = 3;
-        colum = 7;
         grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
+        grid.style.gridTemplateRows = `repeat(${fila}, 1fr)`;
+
 
     } else {
         console.warn("Nivel no reconocido:", nivel);
         return;
     }
+    // bucle para añadir las cartas
+for (let i = 0; i < fila * colum; i++) {
+    const celda = document.createElement('div');
+    const img = document.createElement('img');
+    img.src = "../img/cartaPorDetrasAzul.png";
+    celda.appendChild(img);
+    celda.className = 'celda';
+    img.className = 'imagen'
 
-    for (let i = 0; i < fila * colum; i++) {
-        const celda = document.createElement('div');
-        celda.className = 'celda';
-        celda.textContent = 'carta'; 
-        celda.addEventListener('click', () => {
-            //volteo de carta
-        });
-        grid.appendChild(celda);
+    celda.addEventListener('click', () => {
+        //volteo de carta
+    });
+
+    campojuego.appendChild(celda);
+}
+ppendChild(celda);
     }
 
-    });
+);
