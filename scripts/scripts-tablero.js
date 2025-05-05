@@ -88,7 +88,19 @@ document.addEventListener("DOMContentLoaded", () => {
 for (let i = 0; i < fila * colum; i++) {
     const celda = document.createElement('div');
     const img = document.createElement('img');
-    img.src = "../img/cartaPorDetrasAzul.png";
+    if(nivel === "facil"){
+        img.src = "../img/cartaPorDetras.png";
+    }
+    else if (nivel === "medio"){
+        img.src = "../img/cartaPorDetrasVerde.png"
+    }
+    else if (nivel === "dificil"){
+        img.src = "../img/cartaPorDetrasAzul.png"
+    }
+    else if (nivel === "personalizado"){
+        img.src = "../img/cartaPorDetrasRosa.png"
+    }
+    
     celda.appendChild(img);
     celda.className = 'celda';
     img.className = 'imagen'
