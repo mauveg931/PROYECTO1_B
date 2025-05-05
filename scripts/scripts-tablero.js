@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-    //variables tomadas de index
     const nivel = localStorage.getItem("nivel");
     const temporizador = localStorage.getItem("temporizador");
     const nombre = localStorage.getItem("nombre");
@@ -8,110 +6,126 @@ document.addEventListener("DOMContentLoaded", () => {
     const tema = localStorage.getItem("tema");
     const filas = localStorage.getItem("filas");
     const columnas = localStorage.getItem("columnas");
-    //variables propias
+
     const nombreScreen = document.getElementById("nombreScreen");
     const modoScreen = document.getElementById("modoScreen");
     const nivelScreen = document.getElementById("nivelScreen");
-    const tematicaScreen = document.getElementById("tematicaScreen"); 
-    const fondoImg = document.getElementsByClassName("fondo1")[0];  
+    const tematicaScreen = document.getElementById("tematicaScreen");
+    const fondoImg = document.getElementsByClassName("fondo1")[0];
     const temp = document.getElementById("tiempo");
     const campojuego = document.getElementById("campojuego");
-    
 
-
-    //cambiar el temporizador
-    if(temporizador === "desactivado"){
-        temp.textContent="TEMPORIZADOR DESACTIVADO";
+    if (temporizador === "desactivado") {
+        temp.textContent = "TEMPORIZADOR DESACTIVADO";
     }
-    //Cambiar la imagen de fondo
+
     if (fondoImg) {
-        if (nivel == "facil") {
-            fondoImg.setAttribute("src", "../img/fondorojo.png");
-        } else if (nivel == "medio") {
-            fondoImg.setAttribute("src", "../img/fondoverde.png");
-        } else if (nivel == "dificil") {
-            fondoImg.setAttribute("src", "../img/fondoazul.png");
-        } else if (nivel == "personalizado"){
-            fondoImg.setAttribute("src", "../img/fondorosa.png");
-        }
+        if (nivel == "facil") fondoImg.src = "../img/fondorojo.png";
+        else if (nivel == "medio") fondoImg.src = "../img/fondoverde.png";
+        else if (nivel == "dificil") fondoImg.src = "../img/fondoazul.png";
+        else if (nivel == "personalizado") fondoImg.src = "../img/fondorosa.png";
     }
 
-
-    //Datos introducidos en index
     nombreScreen.textContent = "Nombre: " + nombre;
     modoScreen.textContent = "Modo: " + modo;
     nivelScreen.textContent = "Nivel: " + nivel;
     tematicaScreen.textContent = "Tema: " + tema;
-    
 
-    
     const grid = document.getElementById('campojuego');
-        
-   
 
     let fila, colum;
-
     if (nivel === "facil") {
-        fila = 4; 
-        colum = 4;
-        grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
-        grid.style.gridTemplateRows = `repeat(${fila}, 1fr)`;
-
-
+        fila = 4; colum = 4;
     } else if (nivel === "medio") {
-        fila = 5; 
-        colum = 4;
-        grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
-        grid.style.gridTemplateRows = `repeat(${fila}, 1fr)`;
-
-
+        fila = 5; colum = 4;
     } else if (nivel === "dificil") {
-        fila = 6; 
-        colum = 6;
-        grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
-        grid.style.gridTemplateRows = `repeat(${fila}, 1fr)`;
-
-
+        fila = 6; colum = 6;
     } else if (nivel === "personalizado") {
-      // variables para personalizacion
-        fila = filas;
-        colum = columnas;
-        grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`; 
-        grid.style.gridTemplateRows = `repeat(${fila}, 1fr)`;
-
-
+        fila = parseInt(filas); colum = parseInt(columnas);
     } else {
         console.warn("Nivel no reconocido:", nivel);
         return;
     }
-    // bucle para añadir las cartas
-for (let i = 0; i < fila * colum; i++) {
-    const celda = document.createElement('div');
-    const img = document.createElement('img');
-    if(nivel === "facil"){
-        img.src = "../img/cartaPorDetras.png";
-    }
-    else if (nivel === "medio"){
-        img.src = "../img/cartaPorDetrasVerde.png"
-    }
-    else if (nivel === "dificil"){
-        img.src = "../img/cartaPorDetrasAzul.png"
-    }
-    else if (nivel === "personalizado"){
-        img.src = "../img/cartaPorDetrasRosa.png"
-    }
-    
-    celda.appendChild(img);
-    celda.className = 'celda';
-    img.className = 'imagen'
 
-    celda.addEventListener('click', () => {
-        //volteo de carta
-    });
+    grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`;
+    grid.style.gridTemplateRows = `repeat(${fila}, 1fr)`;
 
-    campojuego.appendChild(celda);
-}
-ppendChild(celda);
+    const totalCartas = fila * colum;
+
+    if (totalCartas % 2 !== 0) {
+        alert("El número total de cartas debe ser par.");
+        return;
     }
 
-);
+    // Crear array de rutas de imágenes
+    const imagenes = [];
+    for (let i = 1; i <= totalCartas / 2; i++) {
+        imagenes.push(`../img/temaMarioBros/carta${i}.png`);
+        imagenes.push(`../img/temaMarioBros/carta${i}-copia.png`);
+    }
+
+    // Barajar
+    imagenes.sort(() => Math.random() - 0.5);
+
+    let primeraCarta = null;
+    let segundaCarta = null;
+    let bloqueo = false;
+
+    for (let i = 0; i < totalCartas; i++) {
+        const celda = document.createElement('div');
+        celda.className = 'celda carta';
+
+        const contenedor = document.createElement('div');
+        contenedor.className = 'contenedor-carta';
+
+        const trasera = document.createElement('img');
+        trasera.className = 'cara trasera';
+
+        if (nivel === "facil") trasera.src = "../img/cartaPorDetras.png";
+        else if (nivel === "medio") trasera.src = "../img/cartaPorDetrasVerde.png";
+        else if (nivel === "dificil") trasera.src = "../img/cartaPorDetrasAzul.png";
+        else trasera.src = "../img/cartaPorDetrasRosa.png";
+
+        const frente = document.createElement('img');
+        frente.className = 'cara frente';
+        frente.src = imagenes[i];
+
+        contenedor.appendChild(trasera);
+        contenedor.appendChild(frente);
+        celda.appendChild(contenedor);
+
+        celda.dataset.imagen = imagenes[i];
+
+        celda.addEventListener('click', () => {
+            if (bloqueo || celda.classList.contains('volteada')) return;
+
+            celda.classList.add('volteada');
+
+            if (!primeraCarta) {
+                primeraCarta = celda;
+            } else {
+                segundaCarta = celda;
+                bloqueo = true;
+
+                const img1 = primeraCarta.dataset.imagen;
+                const img2 = segundaCarta.dataset.imagen;
+
+                if (img1 === img2) {
+                    primeraCarta = null;
+                    segundaCarta = null;
+                    bloqueo = false;
+                } else {
+                    setTimeout(() => {
+                        primeraCarta.classList.remove('volteada');
+                        segundaCarta.classList.remove('volteada');
+                        primeraCarta = null;
+                        segundaCarta = null;
+                        bloqueo = false;
+                    }, 1000);
+                }
+            }
+        });
+
+        campojuego.appendChild(celda);
+    }
+});
