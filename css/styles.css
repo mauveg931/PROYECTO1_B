@@ -229,33 +229,31 @@ html, body {
 }
 
 .celda {
-<<<<<<< Updated upstream
+
     width: 100%;
     aspect-ratio: 1 / 1; /* Mantiene una proporción cuadrada */
-=======
->>>>>>> Stashed changes
+
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     box-sizing: border-box;
-<<<<<<< Updated upstream
-=======
     padding: 0; ;
->>>>>>> Stashed changes
+    padding: 0; ;
+
   }
   
 
   .celda img {
     width: 100%;
     height: 100%;
-<<<<<<< Updated upstream
     object-fit: contain; 
     pointer-events: none;
-=======
     object-fit: contain;
     pointer-events: none; 
->>>>>>> Stashed changes
+    object-fit: contain;
+    pointer-events: none; 
+
   }
 
 
