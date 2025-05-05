@@ -66,6 +66,7 @@ table{
     background-color: #000000;
     opacity: 70%;
     color: white;
+    font-family: "UnifrakturMaguntia", cursive;
     
 }
 .titulo{
@@ -79,6 +80,7 @@ table{
 th{
     padding: 9px;
     font-size: xx-large;
+    font-family: "UnifrakturMaguntia", cursive;
 }
 
 .boton{
@@ -92,6 +94,7 @@ th{
     transition: 0.25s;
     border-color: var(--hover);
     color: #ffffff;
+    font-family: "UnifrakturMaguntia", cursive;
     
 }
 
