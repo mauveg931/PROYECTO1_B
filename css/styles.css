@@ -20,6 +20,8 @@ select:hover {
   outline: none;
   border-color: #ff00fb;
   box-shadow: 0 0 10px #f200ff;
+  border-color: #54014d;
+  box-shadow: 0 0 10px #54014d;
   background: rgba(0, 0, 0, 0.3);
 }
 
@@ -138,7 +140,7 @@ th{
     left: 0;
     right: 0;
     background: #111;
-    border: 2px solid #00ffea;
+    border: 2px solid #54014d;
     border-radius: 8px;
     max-height: 200px;
     overflow-y: auto;
@@ -154,7 +156,7 @@ th{
   }
   
   .option-item:hover {
-    background: #00ffea;
+    background: #54014d;
     color: black;
   }
   
