@@ -229,13 +229,18 @@ html, body {
 }
 
 .celda {
+
     width: 100%;
     aspect-ratio: 1 / 1; /* Mantiene una proporción cuadrada */
+
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     box-sizing: border-box;
+    padding: 0; ;
+    padding: 0; ;
+
   }
   
 
@@ -244,12 +249,17 @@ html, body {
     height: 100%;
     object-fit: contain; 
     pointer-events: none;
+    object-fit: contain;
+    pointer-events: none; 
+    object-fit: contain;
+    pointer-events: none; 
+
   }
 
 
 .campojuego{
-  width: 90vw;              
-  height: 80vh;
+    width: 90vw;              
+    height: 80vh;
     border: 5px solid rgb(0, 0, 0);
     display: grid;
     grid-gap: 10px;
@@ -265,7 +275,7 @@ html, body {
 
     animation-name: pulse;
     animation-duration: 3s;
-}
+}   
 
 @keyframes pulse {
   0%{
@@ -278,19 +288,19 @@ html, body {
   
 }
 .carta {
-  perspective: 1000px;
-  width: 100%;
-  height: 100%;
-}
+    perspective: 1000px;
+    width: 40%;
+    height: 100%;
+    margin-left: 30%;
+  }
 
-.cara {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  backface-visibility: hidden;
-  border-radius: 10px;
-}
-
+  .cara {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 10px;
+  }
 .frente {
   transform: rotateY(180deg);
   justify-content: center;
@@ -311,6 +321,7 @@ html, body {
   transform-style: preserve-3d;
   transition: transform 0.6s;
   transform-origin: center;
+  cursor: pointer; /* Asegura que el cursor cambie solo sobre la carta */
 }
 
 .carta.volteada .contenedor-carta {

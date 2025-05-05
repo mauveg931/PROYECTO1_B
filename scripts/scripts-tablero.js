@@ -107,20 +107,20 @@ document.addEventListener("DOMContentLoaded", () => {
         celda.dataset.id = imagenes[i].id;
 
         // Mover el evento de clic a la imagen "frente"
-        celda.addEventListener('click', () => {
+        contenedor.addEventListener('click', () => {
             if (bloqueo || celda.classList.contains('volteada')) return;
-
+        
             celda.classList.add('volteada');
-
+        
             if (!primeraCarta) {
                 primeraCarta = celda;
             } else {
                 segundaCarta = celda;
                 bloqueo = true;
-
+        
                 const id1 = primeraCarta.dataset.id;
                 const id2 = segundaCarta.dataset.id;
-
+        
                 // Verificamos si ambas cartas son iguales por su ID
                 if (id1 === id2) {
                     primeraCarta = null;
