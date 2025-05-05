@@ -18,6 +18,8 @@ select {
 input[type="text"]:hover,
 select:hover {
   outline: none;
+  border-color: #ff00fb;
+  box-shadow: 0 0 10px #f200ff;
   border-color: #54014d;
   box-shadow: 0 0 10px #54014d;
   background: rgba(0, 0, 0, 0.3);
@@ -70,7 +72,7 @@ table{
    
     font-size: 500%;
     font-family: "UnifrakturMaguntia", cursive;
-    color: #640000;
+    color: #73009d;
     -webkit-text-stroke: 0.7px #000000
 }
 
