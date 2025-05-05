@@ -1,6 +1,5 @@
 /*Index*/
 
-/* Estilo mejorado para inputs y selects */
 input[type="text"],
 select {
   width: 90%;
@@ -16,7 +15,6 @@ select {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
 }
 
-/* Cambios al enfocar */
 input[type="text"]:hover,
 select:hover {
   outline: none;
@@ -25,13 +23,13 @@ select:hover {
   background: rgba(0, 0, 0, 0.3);
 }
 
-/* Opciones dentro del select */
+
 select option {
   background-color: #222;
   color: white;
 }
 
-/* Estilo adicional para mejorar la estética de los select personalizados */
+
 select {
   appearance: none;
   -webkit-appearance: none;
@@ -62,19 +60,15 @@ select {
 table{
     border: 3px solid black;
     margin: 0 auto;
-    margin-top: 15%;
     width: 50%;
     background-color: #000000;
     opacity: 70%;
     color: white;
     
-    
 }
-.tituloIndex{
-  position: relative;
-  margin: auto;
-  width: 100%;
-
+.titulo{
+    padding-top: 2%;
+    font-size: 500%;
 }
 
 th{
@@ -235,22 +229,22 @@ html, body {
 }
 
 .celda {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  box-sizing: border-box;
-}
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Mantiene una proporción cuadrada */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  
 
-
-.celda img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; 
-  pointer-events: none;
-}
+  .celda img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    pointer-events: none;
+  }
 
 
 .campojuego{
@@ -322,4 +316,3 @@ html, body {
 .carta.volteada .contenedor-carta {
   transform: rotateY(180deg);
 }
-
