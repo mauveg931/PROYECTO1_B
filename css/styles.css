@@ -18,8 +18,6 @@ select {
 input[type="text"]:hover,
 select:hover {
   outline: none;
-  border-color: #ff00fb;
-  box-shadow: 0 0 10px #f200ff;
   border-color: #54014d;
   box-shadow: 0 0 10px #54014d;
   background: rgba(0, 0, 0, 0.3);

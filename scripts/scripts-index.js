@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       item.dataset.value = option.value;
 
       item.addEventListener("click", () => {
+        if (option.disabled) return; // Evita seleccionar opciones deshabilitadas
         selected.textContent = item.textContent;
         select.value = item.dataset.value;
         optionList.classList.add("hide-options");
@@ -57,8 +58,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const tema = document.getElementById("tema").value;
     const temporizador = document.getElementById("temporizador").value;
 
-    if (nivel === "" || nombre === "" || modo === "" || tema === "") {
-      alert("Rellena todos los campos");
+    // Validación para evitar seleccionar opciones deshabilitadas
+    if (!nivel || !nombre || !modo || !tema || nivel === "" || modo === "" || tema === "") {
+      alert("Rellena todos los campos correctamente.");
       return;
     }
 
