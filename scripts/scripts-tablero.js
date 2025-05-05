@@ -71,7 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let primeraCarta = null;
     let segundaCarta = null;
     let bloqueo = false;
+    
+    let contIntentos = 0;
+    let contAciertos = 0;
 
+    const intentos = document.getElementById('intentos');
+    const aciertos = document.getElementById('aciertos');  
+    
     for (let i = 0; i < totalCartas; i++) {
         const celda = document.createElement('div');
         celda.className = 'celda carta';
@@ -107,25 +113,32 @@ document.addEventListener("DOMContentLoaded", () => {
         celda.dataset.id = imagenes[i].id;
 
         // Mover el evento de clic a la imagen "frente"
-        contenedor.addEventListener('click', () => {
+        celda.addEventListener('click', () => {
             if (bloqueo || celda.classList.contains('volteada')) return;
-        
+
             celda.classList.add('volteada');
-        
+
             if (!primeraCarta) {
                 primeraCarta = celda;
             } else {
                 segundaCarta = celda;
                 bloqueo = true;
-        
+
                 const id1 = primeraCarta.dataset.id;
                 const id2 = segundaCarta.dataset.id;
-        
+
+                contIntentos++;
+                intentos.textContent = contIntentos;
+
                 // Verificamos si ambas cartas son iguales por su ID
                 if (id1 === id2) {
                     primeraCarta = null;
                     segundaCarta = null;
                     bloqueo = false;
+
+                    contAciertos++;
+                    aciertos.textContent = contAciertos;
+
                 } else {
                     setTimeout(() => {
                         primeraCarta.classList.remove('volteada');
