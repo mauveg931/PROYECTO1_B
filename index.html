@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link  rel="stylesheet" href="./css/styles.css">
     <link rel="icon" type="image/jpg" href="img/iconoWeb.png">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     <title>Memorium</title>
 </head>
 <body class="principal">
-    <video class="videoFondo" src="img/videoFondoWeb.mp4" autoplay muted loop playsinline></video>
     <header class="encabezado">
-        <h1 class="titulo">Memorium</h1>
+    <h1 class="titulo">Memorium</h1>
     </header>
     
     <table>
@@ -23,7 +23,7 @@
         <tr>
             <th>Modo de juego:</th>
             <td>
-                <select id="modo">
+                <select id="modo" class="custom-select">
                     <option value="" selected disabled>Seleccione un modo:</option>
                     <option value="normal">Normal</option>
                     <option value="flash">Flash</option>
@@ -34,7 +34,7 @@
         <tr>
             <th>Nivel:</th>
             <td>
-                <select id="nivel">
+                <select id="nivel" class="custom-select">
                     <option value="" selected disabled>Seleccione un nivel:</option>
                     <option value="facil">Fácil</option>
                     <option value="medio">Medio</option>
@@ -46,30 +46,29 @@
         <tr>
             <th>Tema:</th>
             <td>
-                <select id="tema">
+                <select id="tema" class="custom-select">
                     <option value="" selected disabled>Seleccione un tema:</option>
-                    <option value="poker">Póker</option>
-                    <option value="mario">Mario Bros</option>
-                    <option value="castlevania">Castlevania</option>
+                    <option value="Metal Gear">Metal Gear</option>
+                    <option value="Super Mario Bros">Mario Bros</option>
+                    <option value="Castlevania">Castlevania</option>
                 </select>
             </td>
         </tr>
         <tr>
             <th>Temporizador:</th>
             <td>
-                <select id="temporizador">
+                <select id="temporizador" class="custom-select">
                     <option value="activado">Activado</option>
                     <option value="desactivado">Desactivado</option>
                 </select>
             </td>
         </tr>
+        </table>
         <tr>
             <th colspan="2">
               <button class="boton" id="insertar">¡Empezar juego!</button>
             </th>
           </tr>
-          
-        </table>
     <footer class="pie1">
         <p>
             &copy;Hugo Vila, Mauro Vega, Zeltia Ferreiro. 2025
