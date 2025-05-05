@@ -37,15 +37,28 @@ th{
 
 .boton{
     border-radius: 5px;
-    background: linear-gradient( rgb(74, 7, 74), black);
+    background: #000000 ;
     color: rgb(178, 176, 176);
-    width: 40%;
-    height: 40%;
+    width: 20%;
+    height: 5%;
+    margin: 0 auto;
+    margin-top: 3%;
+    transition: 0.25s;
+    border-color: var(--hover);
+    color: #ffffff;
+    
 }
 
-.boton:hover{
-  background: linear-gradient(black, purple);
+.boton:hover, 
+.boton:focus {
+  animation: height 1s;
+  box-shadow: 0 0 0 0.3em rgb(245, 245, 245);
 }
+
+@keyframes boton {
+  0% { box-shadow: 0 0 0 0 var(--hover); }
+}
+
 .pie1{
     background-color: black;
     color: #f0f0f0;
