@@ -45,6 +45,7 @@ select {
     text-align: center;
     padding: 15px;
     color: black;
+    background: linear-gradient(rgb(85, 0, 85), rgb(10, 0, 39) );
 }
 .videoFondo {
   position: fixed;
@@ -57,22 +58,35 @@ select {
   opacity: 105%;
 }
 
-table{
-    border: 3px solid black;
-    margin: 0 auto;
-    width: 50%;
-    background-color: #000000;
-    opacity: 70%;
-    color: white;
-    font-family: "UnifrakturMaguntia", cursive;
-    
+table {
+  position: relative;
+  margin: 0 auto;
+  width: 50%;
+  background-color: transparent;
+  color: white;
+  font-family: "UnifrakturMaguntia", cursive;
+  z-index: 1;
+
+  
+}
+
+table::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 20%; /* controla solo la opacidad de la imagen */
+  z-index: -1;
+  
 }
 .titulo{
    
     font-size: 500%;
     font-family: "UnifrakturMaguntia", cursive;
-    color: #73009d;
-    -webkit-text-stroke: 0.7px #000000
+    color: #8e0082;
+    -webkit-text-stroke: 0.2px #000000
 }
 
 th{
