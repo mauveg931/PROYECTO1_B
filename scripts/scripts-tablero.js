@@ -60,11 +60,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Crear array de rutas de imágenes
     const imagenes = [];
     for (let i = 1; i <= totalCartas / 2; i++) {
-        imagenes.push(`../img/temaMarioBros/carta${i}.png`);
-        imagenes.push(`../img/temaMarioBros/carta${i} - copia.png`);
+        // Añadir una entrada para cada par de imágenes
+        imagenes.push({nombre: `carta${i}.png`, id: `carta${i}`});
+        imagenes.push({nombre: `carta${i} - copia.png`, id: `carta${i}`});
     }
 
-    // Barajar
+    // Barajar las cartas
     imagenes.sort(() => Math.random() - 0.5);
 
     let primeraCarta = null;
@@ -88,14 +89,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const frente = document.createElement('img');
         frente.className = 'cara frente';
-        frente.src = imagenes[i];
+        frente.src = `../img/temaMarioBros/${imagenes[i].nombre}`;
 
         contenedor.appendChild(trasera);
         contenedor.appendChild(frente);
         celda.appendChild(contenedor);
 
-        celda.dataset.imagen = imagenes[i];
+        celda.dataset.id = imagenes[i].id;
 
+        // Mover el evento de clic a la imagen "frente"
         celda.addEventListener('click', () => {
             if (bloqueo || celda.classList.contains('volteada')) return;
 
@@ -107,10 +109,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 segundaCarta = celda;
                 bloqueo = true;
 
-                const img1 = primeraCarta.dataset.imagen;
-                const img2 = segundaCarta.dataset.imagen;
+                const id1 = primeraCarta.dataset.id;
+                const id2 = segundaCarta.dataset.id;
 
-                if (img1 === img2) {
+                // Verificamos si ambas cartas son iguales por su ID
+                if (id1 === id2) {
                     primeraCarta = null;
                     segundaCarta = null;
                     bloqueo = false;

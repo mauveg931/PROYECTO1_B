@@ -1,4 +1,3 @@
-
 /*Index*/
 .principal{
     text-align: center;
@@ -193,6 +192,15 @@ html, body {
 
 .frente {
   transform: rotateY(180deg);
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.trasera{
+  position: absolute;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 .contenedor-carta {
