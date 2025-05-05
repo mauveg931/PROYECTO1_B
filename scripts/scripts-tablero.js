@@ -95,13 +95,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const frente = document.createElement('img');
         frente.className = 'cara frente';
-        if(tema === "mario"){
+        if(tema === "Super Mario Bros"){
             frente.src = `../img/temaMarioBros/${imagenes[i].nombre}`;
         }
-        else if(tema === "castlevania"){
+        else if(tema === "Castlevania"){
             frente.src = `../img/temaCastlevania/${imagenes[i].nombre}`;
         }
-        else{
+        else if(tema === "Metal Gear"){
             frente.src = `../img/temaMetalGear/${imagenes[i].nombre}`;
         }
         
