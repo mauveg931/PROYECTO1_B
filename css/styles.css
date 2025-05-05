@@ -18,15 +18,19 @@
 table{
     border: 3px solid black;
     margin: 0 auto;
+    margin-top: 15%;
     width: 50%;
     background-color: #000000;
     opacity: 70%;
     color: white;
     
+    
 }
-.titulo{
-    padding-top: 2%;
-    font-size: 500%;
+.tituloIndex{
+  position: relative;
+  margin: auto;
+  width: 100%;
+
 }
 
 th{
