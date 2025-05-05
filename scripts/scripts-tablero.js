@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
             frente.src = `../img/temaCastlevania/${imagenes[i].nombre}`;
         }
         else{
-            frente.src = `../img/temaMarioBros/${imagenes[i].nombre}`;
+            frente.src = `../img/temaMetalGear/${imagenes[i].nombre}`;
         }
         
 
