@@ -192,9 +192,14 @@ html, body {
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s;
+  transform-origin: center;
 }
 
 .carta.volteada .contenedor-carta {
   transform: rotateY(180deg);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
 

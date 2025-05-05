@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const imagenes = [];
     for (let i = 1; i <= totalCartas / 2; i++) {
         imagenes.push(`../img/temaMarioBros/carta${i}.png`);
-        imagenes.push(`../img/temaMarioBros/carta${i}-copia.png`);
+        imagenes.push(`../img/temaMarioBros/carta${i} - copia.png`);
     }
 
     // Barajar
