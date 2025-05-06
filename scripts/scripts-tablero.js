@@ -218,11 +218,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * iniciar cronometro al hacer click en la primera carta
+     * iniciar cronometro al hacer click en la primera carta si no está desactivado
      */
-    campojuego.addEventListener('click', () => {
-        if (!intervalo) iniciarCronometro();
-    });
+    if (temporizador !== "desactivado") {
+        campojuego.addEventListener('click', () => {
+            if (!intervalo) iniciarCronometro();
+        });
+    }
 
     /**
      * detener el crono al terminar
@@ -230,10 +232,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalParejas = totalCartas / 2;
     const observer = new MutationObserver(() => {
         if (contAciertos === totalParejas) {
-            clearInterval(intervalo);º
+            clearInterval(intervalo);
         }
     });
 
     observer.observe(aciertos, { childList: true });
-    
 });
