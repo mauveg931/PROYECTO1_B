@@ -45,7 +45,7 @@ select {
     text-align: center;
     padding: 15px;
     color: black;
-    background: linear-gradient(rgb(85, 0, 85), rgb(10, 0, 39) );
+    background: linear-gradient(rgb(152, 0, 152), rgb(10, 0, 39) );
 }
 .videoFondo {
   position: fixed;
@@ -85,8 +85,8 @@ table::before {
    
     font-size: 500%;
     font-family: "UnifrakturMaguntia", cursive;
-    color: #8e0082;
-    -webkit-text-stroke: 0.2px #000000
+    color: #000000;
+    -webkit-text-stroke: 0.2px #ff4cde
 }
 
 th{
