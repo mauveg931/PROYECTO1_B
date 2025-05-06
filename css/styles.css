@@ -119,7 +119,6 @@ th{
 @keyframes boton {
   0% { box-shadow: 0 0 0 0 var(--hover); }
 }
-
 .pie1 {
   background-color: rgb(0, 0, 0);
   color: #f0f0f0;
@@ -129,8 +128,8 @@ th{
   width: 100%;
   height: 7%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center; /* Centra el texto horizontalmente */
+  align-items: center; /* Centra el texto verticalmente */
   padding: 0 5%;
   box-sizing: border-box;
   z-index: 10;
@@ -217,15 +216,16 @@ th{
 h2{
   inline-size: auto;
 }
-.fondo1{
+.fondo1 {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;  /* Ajuste preciso a la pantalla */
+  height: 100vh;
   object-fit: cover;
   z-index: -1;
 }
+
 html, body {
     height: 100%;
     margin: 0;
@@ -240,13 +240,17 @@ html, body {
   .piep {
     background-color: rgb(0, 0, 0);
     color: whitesmoke;
-    height: 10%;
-    margin-bottom: 0% ;
+    bottom: 0;
+    left: 0;
     width: 100%;
+    height: 10%;
     box-sizing: border-box;
-
+    z-index: 100;
+    padding-top: 2px; 
+    position: relative;
   }
   
+
   .marco {
     display: flex;
     justify-content: space-between;
@@ -271,20 +275,27 @@ html, body {
   .puntos {
     font-family: "Tagesschrift", cursive;
     text-align: left;
+    padding-left: 5%;
   }
   
   .intentos {
     font-family: "Tagesschrift", cursive;
     text-align: right;
+    padding-right: 5%;
   }
   
   .volver {
     font-family: "Tagesschrift", cursive;
-    width: 50%;
-    text-align: center;
+    width: auto;
+    height: auto;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
+    bottom: 50%;
+    transform: translate(-50%, 50%);
+    margin: 0;
+  }
+  .boton{
+    width: auto;
   }
 .celda {
     width: 100%;
@@ -297,6 +308,7 @@ html, body {
     padding: 0; ;
     padding: 0; ;
   }
+
   
 
   .celda img {
@@ -381,4 +393,9 @@ html, body {
 
 .carta.volteada .contenedor-carta {
   transform: rotateY(180deg);
+}
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto; 
 }
