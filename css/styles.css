@@ -16,7 +16,7 @@ select {
 }
 
 input[type="text"]:hover,
-select:hover {
+select option:hover {
   outline: none;
   border-color: #54014d;
   box-shadow: 0 0 10px #54014d;
@@ -45,7 +45,7 @@ select {
     text-align: center;
     padding: 15px;
     color: black;
-    background: linear-gradient(rgb(152, 0, 152), rgb(10, 0, 39) );
+    background: linear-gradient(rgb(85, 0, 85), rgb(10, 0, 39) );
 }
 .videoFondo {
   position: fixed;
@@ -85,8 +85,8 @@ table::before {
    
     font-size: 500%;
     font-family: "UnifrakturMaguntia", cursive;
-    color: #ffffff;
-    -webkit-text-stroke: 0.2px #a70088
+    color: #8e0082;
+    -webkit-text-stroke: 0.2px #000000
 }
 
 th{
@@ -120,17 +120,22 @@ th{
   0% { box-shadow: 0 0 0 0 var(--hover); }
 }
 
-.pie1{
-    background-color: black;
-    color: #f0f0f0;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 7%;
-    text-align: center;
-
+.pie1 {
+  background-color: black;
+  color: #f0f0f0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  box-sizing: border-box;
+  z-index: 10;
 }
+
 .select-wrapper {
     position: relative;
     width: 90%;
@@ -142,12 +147,19 @@ th{
     padding: 10px;
     background: rgba(0, 0, 0, 0.5);
     color: white;
-    border: 2px solid #888;
+    border: 2px solid #968dad;
     border-radius: 8px;
     cursor: pointer;
     backdrop-filter: blur(8px);
     transition: 0.3s;
   }
+  select:hover{
+    outline: none;
+    border-color: #7700ff; /* Borde morado */
+    box-shadow: 0 0 10px #7700ff; /* Efecto de brillo morado */
+    background: rgba(0, 0, 0, 0.3); /* Fondo oscuro opcional */
+  }
+
   
   .option-list {
     position: absolute;
@@ -228,7 +240,7 @@ html, body {
   .piep {
     background-color: black;
     color: whitesmoke;
-    padding: 10px;
+
   }
   
   .marco {
@@ -237,16 +249,38 @@ html, body {
     align-items: flex-end;
   }
  
-  .tiempo, .puntos, .volver {
+  .puntos, .volver {
     display: flex;
     flex-direction: column;
   }
-.volver{
-  width: 30%;
-  text-align: center;
-  margin-bottom: 1%;
-  font-family: "Tagesschrift", cursive;
-}
+  .tiempo {
+    position: fixed;
+    top: 20px; 
+    right: 20px;
+    margin: 0;
+    font-family: "Tagesschrift", cursive;
+    font-size: 1.2em;
+    z-index: 20;
+  }
+  
+  .puntos {
+    font-family: "Tagesschrift", cursive;
+    text-align: left;
+  }
+  
+  .intentos {
+    font-family: "Tagesschrift", cursive;
+    text-align: right;
+  }
+  
+  .volver {
+    font-family: "Tagesschrift", cursive;
+    width: 50%;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 .celda {
     width: 100%;
     aspect-ratio: 1 / 1; 
@@ -257,7 +291,6 @@ html, body {
     box-sizing: border-box;
     padding: 0; ;
     padding: 0; ;
-
   }
   
 

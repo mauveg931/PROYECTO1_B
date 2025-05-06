@@ -153,9 +153,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         campojuego.appendChild(celda);
     }
-//cronometro (al hacer click en una carta)
+//cronometro
     let tiempoTranscurrido = 0;
     let intervalo;
+
+    if (temporizador === "desactivado") return; // No iniciar el cronómetro si está desactivado
+
 
     function iniciarCronometro() {
         if (!intervalo) {
@@ -184,3 +187,5 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(aciertos, { childList: true });
     
 });
+
+
