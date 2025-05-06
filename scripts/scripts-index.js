@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("insertar");
 
-  // Reemplaza selects por estilos personalizados
+  /**
+   * reemplazo de los selects por personalización
+   */
   const selects = document.querySelectorAll(".custom-select");
   selects.forEach((select) => {
     const wrapper = document.createElement("div");
@@ -21,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       item.dataset.value = option.value;
 
       item.addEventListener("click", () => {
-        if (option.disabled) return; // Evita seleccionar opciones deshabilitadas
+        if (option.disabled) return;
         selected.textContent = item.textContent;
         select.value = item.dataset.value;
         optionList.classList.add("hide-options");
@@ -41,7 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
     wrapper.appendChild(optionList);
   });
 
-  // Cierra todos al hacer clic fuera
+  /**
+   * cerrar el menu de seleccion al hacer click fuera
+   */
   document.addEventListener("click", function (e) {
     document.querySelectorAll(".option-list").forEach((list) => {
       if (!list.parentNode.contains(e.target)) {
@@ -50,7 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Lógica del botón
+  /**
+   * botón
+   */
   btn.addEventListener("click", () => {
     const nivel = document.getElementById("nivel").value;
     const nombre = document.getElementById("usuario").value;
@@ -58,7 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const tema = document.getElementById("tema").value;
     const temporizador = document.getElementById("temporizador").value;
 
-    // Validación para evitar seleccionar opciones deshabilitadas
+    /**
+     * validación
+     */
     if (!nivel || !nombre || !modo || !tema || nivel === "" || modo === "" || tema === "") {
       alert("Rellena todos los campos correctamente.");
       return;
@@ -70,6 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("modo", modo);
     localStorage.setItem("tema", tema);
 
+    /**
+     * pedir datos para niveles personalizados
+     */
     if (nivel === "personalizado") {
       let filas, columnas;
 
@@ -87,7 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
       columnas = parseInt(columnas);
 
       const total = filas * columnas;
-
+/**
+ * validación de cartas totales y que sea par
+ */
       if (total % 2 !== 0 || total > 28) {
         alert("El número total de cartas debe ser par y menor o igual a 28.");
         return;
