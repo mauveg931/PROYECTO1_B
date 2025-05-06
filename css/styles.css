@@ -85,8 +85,12 @@ table::before {
    
     font-size: 500%;
     font-family: "UnifrakturMaguntia", cursive;
-    color: #8e0082;
+    color: #ff50dc;
     -webkit-text-stroke: 0.2px #000000
+}
+
+.nombreRecuadro{
+ 
 }
 
 th{
