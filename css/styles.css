@@ -64,7 +64,7 @@ table {
   width: 50%;
   background-color: transparent;
   color: white;
-  font-family: "UnifrakturMaguntia", cursive;
+  font-family: "Tagesschrift", cursive;
   z-index: 1;
 
   
@@ -92,7 +92,7 @@ table::before {
 th{
     padding: 9px;
     font-size: xx-large;
-    font-family: "UnifrakturMaguntia", cursive;
+    font-family: "Tagesschrift", cursive;
 }
 
 .boton{
@@ -106,7 +106,7 @@ th{
     transition: 0.25s;
     border-color: var(--hover);
     color: #ffffff;
-    font-family: "UnifrakturMaguntia", cursive;
+    font-family: "Tagesschrift", cursive;
     
 }
 
@@ -245,6 +245,7 @@ html, body {
   width: 30%;
   text-align: center;
   margin-bottom: 1%;
+  font-family: "Tagesschrift", cursive;
 }
 .celda {
     width: 100%;
