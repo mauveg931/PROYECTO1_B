@@ -153,4 +153,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
         campojuego.appendChild(celda);
     }
+//cronometro (al hacer click en una carta)
+    let tiempoTranscurrido = 0;
+    let intervalo;
+
+    function iniciarCronometro() {
+        if (!intervalo) {
+            intervalo = setInterval(() => {
+                tiempoTranscurrido++;
+                const minutos = Math.floor(tiempoTranscurrido / 60).toString().padStart(2, '0');
+                const segundos = (tiempoTranscurrido % 60).toString().padStart(2, '0');
+                temp.textContent = `Tiempo: ${minutos}:${segundos}`;
+            }, 1000);
+        }
+    }
+
+    // Iniciar el cronómetro al hacer clic en la primera carta
+    campojuego.addEventListener('click', () => {
+        if (!intervalo) iniciarCronometro();
+    });
+
+    // Detener el cronómetro cuando se levanten todas las cartas
+    const totalParejas = totalCartas / 2;
+    const observer = new MutationObserver(() => {
+        if (contAciertos === totalParejas) {
+            clearInterval(intervalo);º
+        }
+    });
+
+    observer.observe(aciertos, { childList: true });
+    
 });
