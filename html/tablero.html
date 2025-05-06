@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/styles.css">
-  <link href="https://fonts.googleapis.com/css?family=Tagesschrift:regular" rel="stylesheet" />
+
   <link rel="icon" type="image/jpg" href="../img/iconoWeb.png">
 
   <title>Memorium</title>
@@ -23,7 +23,14 @@
   <div class="campojuego" id="campojuego">
   </div>
 
-  
+  <div class="pantallaFinal" style="display: none; text-align: center;">
+    <h2>¡Has ganado!</h2>
+    <p id="resultadoNombre"></p>
+    <p id="resultadoIntentos"></p>
+    <p id="resultadoTiempo"></p>
+    <button onclick="location.reload()">Volver a jugar</button>
+</div>
+
 
   <footer class="piep">
     <div class="marco">
@@ -37,10 +44,8 @@
             </a>
       </div>
       <div class="puntos">
-        <p>Aciertos: <span id="aciertos">0</span></p>
-      </div>
-      <div class="intentos">
         <p>Intentos: <span id="intentos">0</span></p>
+        <p>Aciertos: <span id="aciertos">0</span></p>
       </div>
     </div>
   </footer>

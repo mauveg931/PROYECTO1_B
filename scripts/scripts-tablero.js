@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+   /**
+    * constantes
+    */
     const nivel = localStorage.getItem("nivel");
     const temporizador = localStorage.getItem("temporizador");
     const nombre = localStorage.getItem("nombre");
@@ -6,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const tema = localStorage.getItem("tema");
     const filas = localStorage.getItem("filas");
     const columnas = localStorage.getItem("columnas");
-
     const nombreScreen = document.getElementById("nombreScreen");
     const modoScreen = document.getElementById("modoScreen");
     const nivelScreen = document.getElementById("nivelScreen");
@@ -14,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const fondoImg = document.getElementsByClassName("fondo1")[0];
     const temp = document.getElementById("tiempo");
     const campojuego = document.getElementById("campojuego");
+
+    /**
+     * configuración personalizada
+     */
 
     if (temporizador === "desactivado") {
         temp.textContent = "TEMPORIZADOR DESACTIVADO";
@@ -51,21 +57,26 @@ document.addEventListener("DOMContentLoaded", () => {
     grid.style.gridTemplateRows = `repeat(${fila}, 1fr)`;
 
     const totalCartas = fila * colum;
-
+    /**
+     * validación numero de cartas
+     */
     if (totalCartas % 2 !== 0) {
         alert("El número total de cartas debe ser par.");
         return;
     }
 
-    // Crear array de rutas de imágenes
+    /**
+     * array para las imagenes
+     */
     const imagenes = [];
     for (let i = 1; i <= totalCartas / 2; i++) {
-        // Añadir una entrada para cada par de imágenes
         imagenes.push({nombre: `carta${i}.png`, id: `carta${i}`});
         imagenes.push({nombre: `carta${i} - copia.png`, id: `carta${i}`});
     }
 
-    // Barajar las cartas
+    /**
+     * barajar cartas
+     */
     imagenes.sort(() => Math.random() - 0.5);
 
     let primeraCarta = null;
@@ -77,7 +88,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const intentos = document.getElementById('intentos');
     const aciertos = document.getElementById('aciertos');  
+
+    /**
+     * funcion pantalla de fin de partida
+     */
+    function fin() {
+        const user = localStorage.getItem("nombre") || "Usuario:";
+        const crono = localStorage.getItem("temporizador") !== "desactivado";
     
+        document.getElementById("pantallaFinal").style.display = "block";
+    
+        document.getElementById("campojuego").style.display = "none";
+    
+        document.getElementById("resultadoNombre").textContent = `Nombre: ${user}`;
+        document.getElementById("resultadoIntentos").textContent = `Movimientos: ${contIntentos}`;
+    
+        if (crono) {
+
+            document.getElementById("resultadoTiempo").textContent = `Tiempo: ${formatearTiempo(tiempoTranscurrido)}`;
+        } else {
+        }
+    }
+
+    /**
+     * crear cartas
+     */
+
     for (let i = 0; i < totalCartas; i++) {
         const celda = document.createElement('div');
         celda.className = 'celda carta';
@@ -87,7 +123,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const trasera = document.createElement('img');
         trasera.className = 'cara trasera';
-
+/**
+ * config personalizada
+ */
         if (nivel === "facil") trasera.src = "../img/cartaPorDetras.png";
         else if (nivel === "medio") trasera.src = "../img/cartaPorDetrasVerde.png";
         else if (nivel === "dificil") trasera.src = "../img/cartaPorDetrasAzul.png";
@@ -112,7 +150,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         celda.dataset.id = imagenes[i].id;
 
-        // Mover el evento de clic a la imagen "frente"
+        /**
+         * evento de click de carta
+         */
         celda.addEventListener('click', () => {
             if (bloqueo || celda.classList.contains('volteada')) return;
 
@@ -130,14 +170,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 contIntentos++;
                 intentos.textContent = contIntentos;
 
-                // Verificamos si ambas cartas son iguales por su ID
+                /**
+                 * comparar cartas
+                 */
                 if (id1 === id2) {
                     primeraCarta = null;
                     segundaCarta = null;
                     bloqueo = false;
 
+                    
                     contAciertos++;
                     aciertos.textContent = contAciertos;
+
+                    if (contAciertos === totalCartas / 2) {
+                        fin();
+                    }
 
                 } else {
                     setTimeout(() => {
@@ -153,12 +200,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         campojuego.appendChild(celda);
     }
-//cronometro
+/**
+ * crono
+ */
     let tiempoTranscurrido = 0;
     let intervalo;
-
-    if (temporizador === "desactivado") return; // No iniciar el cronómetro si está desactivado
-
 
     function iniciarCronometro() {
         if (!intervalo) {
@@ -171,12 +217,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Iniciar el cronómetro al hacer clic en la primera carta
+    /**
+     * iniciar cronometro al hacer click en la primera carta
+     */
     campojuego.addEventListener('click', () => {
         if (!intervalo) iniciarCronometro();
     });
 
-    // Detener el cronómetro cuando se levanten todas las cartas
+    /**
+     * detener el crono al terminar
+     */
     const totalParejas = totalCartas / 2;
     const observer = new MutationObserver(() => {
         if (contAciertos === totalParejas) {
@@ -187,5 +237,3 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(aciertos, { childList: true });
     
 });
-
-
