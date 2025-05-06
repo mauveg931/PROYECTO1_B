@@ -10,6 +10,15 @@
   <title>Memorium</title>
 </head>
 <body class="tablero1">
+  
+  <div class="pantallaFinal" style="display: none; text-align: center;">
+    <h2>¡Has ganado!</h2>
+    <p id="resultadoNombre"></p>
+    <p id="resultadoIntentos"></p>
+    <p id="resultadoTiempo"></p>
+    <button onclick="location.reload()">Volver a jugar</button>
+</div>
+
 
   <div id="datosJuego" class="datosJuego">
     <h2 id="nombreScreen" value=""></h2>
@@ -23,15 +32,6 @@
   <div class="campojuego" id="campojuego">
   </div>
 
-  <div class="pantallaFinal" style="display: none; text-align: center;">
-    <h2>¡Has ganado!</h2>
-    <p id="resultadoNombre"></p>
-    <p id="resultadoIntentos"></p>
-    <p id="resultadoTiempo"></p>
-    <button onclick="location.reload()">Volver a jugar</button>
-</div>
-
-
   <footer class="piep">
     <div class="marco">
       <div id="tiempo" class="tiempo">
@@ -44,7 +44,7 @@
             </a>
       </div>
       <div class="puntos">
-        <p>Intentos: <span id="intentos">0</span></p>
+        <p>Movimientos: <span id="movimientos">0</span></p>
         <p>Aciertos: <span id="aciertos">0</span></p>
       </div>
     </div>

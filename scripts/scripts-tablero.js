@@ -83,10 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
     let segundaCarta = null;
     let bloqueo = false;
     
-    let contIntentos = 0;
+    let contMovimientos = 0;
     let contAciertos = 0;
 
-    const intentos = document.getElementById('intentos');
+    const movimientos = document.getElementById('movimientos');
     const aciertos = document.getElementById('aciertos');  
 
     /**
@@ -101,11 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("campojuego").style.display = "none";
     
         document.getElementById("resultadoNombre").textContent = `Nombre: ${user}`;
-        document.getElementById("resultadoIntentos").textContent = `Movimientos: ${contIntentos}`;
+        document.getElementById("resultadoMovimientos").textContent = `Movimientos: ${contMovimientos}`;
     
         if (crono) {
 
-            document.getElementById("resultadoTiempo").textContent = `Tiempo: ${formatearTiempo(tiempoTranscurrido)}`;
+            document.getElementById("resultadoTiempo").textContent = `Tiempo: ${crono}`;
         } else {
         }
     }
@@ -123,9 +123,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const trasera = document.createElement('img');
         trasera.className = 'cara trasera';
-/**
- * config personalizada
- */
+    /**
+     * config personalizada
+     */
         if (nivel === "facil") trasera.src = "../img/cartaPorDetras.png";
         else if (nivel === "medio") trasera.src = "../img/cartaPorDetrasVerde.png";
         else if (nivel === "dificil") trasera.src = "../img/cartaPorDetrasAzul.png";
@@ -167,8 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const id1 = primeraCarta.dataset.id;
                 const id2 = segundaCarta.dataset.id;
 
-                contIntentos++;
-                intentos.textContent = contIntentos;
+                contMovimientos++;
+                movimientos.textContent = contMovimientos;
 
                 /**
                  * comparar cartas
