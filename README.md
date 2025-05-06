@@ -63,9 +63,8 @@ Funcionalidad del temporizador, pulir fuentes y cohesión en la estética.
 
 ## SESION 4 (06/05/2025)
 **RESUMEN**
-Temporizador, comienzo en pantalla final, cambios estéticos, documentación de codigo.
+Temporizador, comienzo de pantalla final, cambios estéticos, documentación de cdigo.
 **DIFICULTADES**
-
 **SOLUCIONES**
 **FUENTES CONSULTADAS**
 https://dev.to/goaqidev/jsdoc-la-guia-definitiva-para-documentar-tu-codigo-javascript-ik5
@@ -73,6 +72,6 @@ https://www.freecodecamp.org/espanol/news/javascript-settimeout-como-establecer-
 https://developer.mozilla.org/es/docs/Web/API/Window/setTimeout
 
 **DECISIONES TÉCNICAS**
-
+Cambio en la estética.
 **IDEAS DE MEJORA**
 Pantalla final.
