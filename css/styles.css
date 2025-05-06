@@ -85,8 +85,8 @@ table::before {
    
     font-size: 500%;
     font-family: "UnifrakturMaguntia", cursive;
-    color: #000000;
-    -webkit-text-stroke: 0.2px #ff4cde
+    color: #ffffff;
+    -webkit-text-stroke: 0.2px #a70088
 }
 
 th{
