@@ -400,6 +400,11 @@ html, body {
 
 .tituloHistorial{
   font-family: "Tagesschrift", cursive;
+  color: white
 }
 
+
+.tablaHistorial{
+  border: 1px solid black;
+}
 /*Ránking*/
