@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const aciertos = document.getElementById('aciertos'); 
 
     function calcularPuntos(aciertos, movimientos, tiempo) {
-    var puntosFinales = (aciertos * 10) - (movimientos * 5) - (tiempo*0.5) ;
+    const puntos = (aciertos * 10) - (movimientos * 5) - (tiempo*0.5) ;
 
 
     }
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         historial.forEach((partida) => {
             const fila = document.createElement("tr");
 
-            ["nombre", "dificultad", "tema", "modo", "duracion", "fecha"].forEach((key) => {
+            ["nombre", "dificultad", "tema", "modo", "duracion", "puntos", "fecha"].forEach((key) => {
                 const celda = document.createElement("td");
                 celda.textContent = partida[key];
                 fila.appendChild(celda);
