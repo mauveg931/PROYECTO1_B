@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const aciertos = document.getElementById('aciertos'); 
 
     function calcularPuntos(aciertos, movimientos, tiempoTranscurrido) {
-    const puntos = (aciertos * 10) - (movimientos * 5) - (tiempoTranscurrido*0.5);
+    const puntos = (aciertos * 50) - (movimientos * 2) - (tiempoTranscurrido*0.5);
     return Math.max(0, Math.round(puntos));
 
     }
@@ -33,11 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const movimientos = parseInt(partida.movimientos);
             const duracion = parseFloat(partida.duracion);
 
-    // Verifica que los datos sean válidos antes de calcular
     if (!isNaN(aciertos) && !isNaN(movimientos) && !isNaN(duracion)) {
         partida.puntos = calcularPuntos(aciertos, movimientos, duracion);
     } else {
-        partida.puntos = 0; // o muestra "N/A", según prefieras
+        partida.puntos = 0;
     }
             ["nombre", "dificultad", "tema", "modo", "duracion", "puntos", "fecha"].forEach((key) => {
                 const celda = document.createElement("td");

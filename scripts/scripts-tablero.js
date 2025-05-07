@@ -96,14 +96,14 @@ document.addEventListener("DOMContentLoaded", () => {
     function fin() {
         const user = localStorage.getItem("nombre") || "Usuario:";
         const crono = localStorage.getItem("temporizador") !== "desactivado";
-    
+
         document.getElementById("pantallaFinal").style.display = "block";
-    
+
         document.getElementById("campojuego").style.display = "none";
-    
+
         document.getElementById("resultadoNombre").textContent = `Nombre: ${user}`;
         document.getElementById("resultadoMovimientos").textContent = `Movimientos: ${contMovimientos}`;
-    
+
         if (crono) {
 
             document.getElementById("resultadoTiempo").textContent = `Tiempo: ${crono}`;
@@ -253,7 +253,9 @@ document.addEventListener("DOMContentLoaded", () => {
             dificultad: localStorage.getItem("nivel"),
             tema: localStorage.getItem("tema"),
             modo: localStorage.getItem("modo"),
-            duracion: `${minutos}:${segundos}`,
+            duracion: `${minutos}:${segundos}`, 
+            movimientos: contMovimientos,
+            aciertos: contAciertos,
             fecha: new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" })
         };
         
