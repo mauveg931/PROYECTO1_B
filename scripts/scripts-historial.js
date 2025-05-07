@@ -8,23 +8,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const movimientos = document.getElementById('movimientos');
     const aciertos = document.getElementById('aciertos'); 
 
-    function calcularPuntos(aciertos, movimientos, tiempo) {
-    const puntos = (aciertos * 10) - (movimientos * 5) - (tiempo*0.5);
+    function calcularPuntos(aciertos, movimientos, tiempoTranscurrido) {
+    const puntos = (aciertos * 10) - (movimientos * 5) - (tiempoTranscurrido*0.5);
+    return Math.max(0, Math.round(puntos));
 
-    
     }
 
 
-    
-    /**
-     * funcion formato de tiempo
-     */
-    const formatearDuracion = (duracion) => {
-        const minutos = Math.floor(duracion / 60);
-        const segundos = duracion % 60;
-        return `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
-    };
-
+   
+/**
+ * crear historial
+ */
     if (historial.length === 0) {
         const fila = document.createElement("tr");
         const celda = document.createElement("td");
@@ -36,6 +30,16 @@ document.addEventListener("DOMContentLoaded", () => {
         historial.forEach((partida) => {
             const fila = document.createElement("tr");
 
+            const aciertos = parseInt(partida.aciertos);
+    const movimientos = parseInt(partida.movimientos);
+    const duracion = parseFloat(partida.duracion);
+
+    // Verifica que los datos sean válidos antes de calcular
+    if (!isNaN(aciertos) && !isNaN(movimientos) && !isNaN(duracion)) {
+        partida.puntos = calcularPuntos(aciertos, movimientos, duracion);
+    } else {
+        partida.puntos = 0; // o muestra "N/A", según prefieras
+    }
             ["nombre", "dificultad", "tema", "modo", "duracion", "puntos", "fecha"].forEach((key) => {
                 const celda = document.createElement("td");
                 celda.textContent = partida[key];

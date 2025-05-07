@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const fondoImg = document.getElementsByClassName("fondo1")[0];
     const temp = document.getElementById("tiempo");
     const campojuego = document.getElementById("campojuego");
-
+    let tiempoTranscurrido = 0;
+    let intervalo;
     /**
      * configuración personalizada
      */
@@ -184,6 +185,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (contAciertos === totalCartas / 2) {
                         fin();
+                        const partida = {
+                            nombre: nombreJugador,
+                            dificultad: nivel,
+                            tema: temaSeleccionado,
+                            modo: modoJuego,
+                            duracion: tiempoEnSegundos,
+                            movimientos: totalIntentos,
+                            aciertos: totalAciertos,
+                            fecha: new Date().toLocaleString(),
+                        };
+                        const historial = JSON.parse(localStorage.getItem("historial")) || [];
+                        historial.push(partida);
+                        localStorage.setItem("historial", JSON.stringify(historial));
                     }
 
                 } else {
@@ -203,8 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /**
  * crono
  */
-    let tiempoTranscurrido = 0;
-    let intervalo;
+    
 
     function iniciarCronometro() {
         if (!intervalo) {
@@ -244,7 +257,9 @@ document.addEventListener("DOMContentLoaded", () => {
             fecha: new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" })
         };
         
-            // Obtener historial y añadir la nueva partida
+            /**
+             * refrescar historial
+             */
             const historial = JSON.parse(localStorage.getItem("historial")) || [];
             historial.push(partida);
             localStorage.setItem("historial", JSON.stringify(historial));
