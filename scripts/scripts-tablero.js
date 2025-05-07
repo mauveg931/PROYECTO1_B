@@ -235,9 +235,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     observer.observe(aciertos, { childList: true });
-<<<<<<< Updated upstream
-    
-=======
 
->>>>>>> Stashed changes
 });
