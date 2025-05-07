@@ -1,17 +1,25 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const cuerpo = document.getElementById("cuerpoHistorial");
+    const historial = JSON.parse(localStorage.getItem("historial")) || [];
 
-//constantes
-const nombreFinal = localStorage.getItem("nombreFinal");
-const dificultadFinal = localStorage.getItem("dificultadFinal");
-const modoFinal = localStorage.getItem("modoFinal");
-const temaFinal = localStorage.getItem("temaFinal");
-const duracionFinal = localStorage.getItem("duracionFinal");
-const fechaFinalFormateada = localStorage.getItem("fechaFinalFormateada");
+    if (historial.length === 0) {
+        const fila = document.createElement("tr");
+        const celda = document.createElement("td");
+        celda.colSpan = 6;
+        celda.textContent = "No hay partidas registradas aún.";
+        fila.appendChild(celda);
+        cuerpo.appendChild(fila);
+    } else {
+        historial.forEach((partida) => {
+            const fila = document.createElement("tr");
 
-//creacion de tabla con las constantes cada vez que se acaba una partida
-const tabla = document.createElement("table");
-const encabezado = document.createElement("thead");
-const cuerpo = document.createElement("tbody");
-const filaEncabezado = document.createElement("tr");
-filaEncabezado.textContent= "Historial de partidas";
+            ["nombre", "dificultad", "tema", "modo", "duracion", "fecha"].forEach((key) => {
+                const celda = document.createElement("td");
+                celda.textContent = partida[key];
+                fila.appendChild(celda);
+            });
 
-
+            cuerpo.appendChild(fila);
+        });
+    }
+});

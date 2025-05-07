@@ -230,14 +230,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalParejas = totalCartas / 2;
     const observer = new MutationObserver(() => {
         if (contAciertos === totalParejas) {
-            clearInterval(intervalo);º
-            const nombreFinal = localStorage.setItem("nombreFinal", nombre);
-            const dificultadFinal = localStorage.setItem("dificultadFinal", nivel);
-            const temaFinal = localStorage.setItem("temaFinal", tema);
-            const modoFinal = localStorage.setItem("modoFinal", modo);
-            const duracionFinal = localStorage.setItem("duracionFinal", tiempoTranscurrido);
-
+            clearInterval(intervalo);
+        
+            const partida = {
+                nombre: localStorage.getItem("nombre"),
+                dificultad: localStorage.getItem("nivel"),
+                tema: localStorage.getItem("tema"),
+                modo: localStorage.getItem("modo"),
+                duracion: tiempoTranscurrido + "s",
+                fecha: new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" })
+            };
+        
+            // Obtener historial y añadir la nueva partida
+            const historial = JSON.parse(localStorage.getItem("historial")) || [];
+            historial.push(partida);
+            localStorage.setItem("historial", JSON.stringify(historial));
         }
+        
     });
 
     observer.observe(aciertos, { childList: true });

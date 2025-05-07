@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Tagesschrift:regular" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
     <link rel="icon" type="image/jpg" href="../img/iconoWeb.png">
-    <link  rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>Memorium</title>
 </head>
 <body class="principal">
@@ -14,32 +14,32 @@
         <h1 class="titulo">Memorium</h1>
         <h2 class="tituloHistorial">Historial</h2>
     </header>
-    <table class="tablaHistorial">
-        <tr>
-            <th>Usuario:</th>
-            <th>Dificultad:</th>
-            <th>Tema:</th>
-            <th>Modalidad:</th>
-            <th>Duración:</th>
-            <th>Puntos:</th>
-            <th>Fecha:</th>
-        </tr>
-        <tr>
-            <td>Manolin Moanilito</td>
-            <td></td>
-        </tr>
 
+    <table class="tablaHistorial" id="tablaHistorial">
+        <thead>
+            <tr style="gap: 20px; text-align: left;">
+                <th style="padding-right: 20px;">Usuario:</th>
+                <th style="padding-right: 20px;">Dificultad:</th>
+                <th style="padding-right: 20px;">Tema:</th>
+                <th style="padding-right: 20px;">Modalidad:</th>
+                <th style="padding-right: 20px;">Duración:</th>
+                <th style="padding-right: 20px;">Puntos:</th>
+                <th style="padding-right: 20px;">Fecha:</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoHistorial">
+            <!-- Aquí se insertarán las filas con partidas -->
+        </tbody>
     </table>
-    <footer>
-    <div class="volver">
-        <a href="../index.html">
-            <button class="boton" id="insertar">volver</button>
-            </a>
-      </div>
 
+    <footer>
+        <div class="volver">
+            <a href="../index.html">
+                <button class="boton" id="insertar">volver</button>
+            </a>
+        </div>
     </footer>
 
-      <script defer src="scripts/scripts-tablero.js"></script>
-
+    <script src="../scripts/scripts-historial.js" defer></script>
 </body>
 </html>
