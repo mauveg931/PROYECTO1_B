@@ -218,11 +218,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * iniciar cronometro al hacer click en la primera carta
+     * iniciar cronometro al hacer click en la primera carta (no tocar cago en die)
      */
-    campojuego.addEventListener('click', () => {
-        if (!intervalo) iniciarCronometro();
-    });
+    if (temporizador !== "desactivado") {
+        campojuego.addEventListener('click', () => {
+            if (!intervalo) iniciarCronometro();
+        });
+    }
 
     /**
      * detener el crono al terminar
