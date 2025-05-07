@@ -63,6 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const modo = document.getElementById("modo").value;
     const tema = document.getElementById("tema").value;
     const temporizador = document.getElementById("temporizador").value;
+    const fechaFinal = localStorage.setItem("fechaFinal", new Date().toLocaleString());
+    const fechaFinalFormateada = new Date(fechaFinal).toLocaleString("es-ES", { timeZone: "Europe/Madrid" });
 
     /**
      * validación

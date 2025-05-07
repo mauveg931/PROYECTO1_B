@@ -231,6 +231,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const observer = new MutationObserver(() => {
         if (contAciertos === totalParejas) {
             clearInterval(intervalo);º
+            const nombreFinal = localStorage.setItem("nombreFinal", nombre);
+            const dificultadFinal = localStorage.setItem("dificultadFinal", nivel);
+            const temaFinal = localStorage.setItem("temaFinal", tema);
+            const modoFinal = localStorage.setItem("modoFinal", modo);
+            const duracionFinal = localStorage.setItem("duracionFinal", tiempoTranscurrido);
+
         }
     });
 
