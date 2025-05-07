@@ -231,15 +231,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const observer = new MutationObserver(() => {
         if (contAciertos === totalParejas) {
             clearInterval(intervalo);
-        
-            const partida = {
-                nombre: localStorage.getItem("nombre"),
-                dificultad: localStorage.getItem("nivel"),
-                tema: localStorage.getItem("tema"),
-                modo: localStorage.getItem("modo"),
-                duracion: tiempoTranscurrido + "s",
-                fecha: new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" })
-            };
+        const minutos = Math.floor(tiempoTranscurrido / 60).toString().padStart(2, '0');
+        const segundos = (tiempoTranscurrido % 60).toString().padStart(2, '0');
+        const partida = {
+            nombre: localStorage.getItem("nombre"),
+            dificultad: localStorage.getItem("nivel"),
+            tema: localStorage.getItem("tema"),
+            modo: localStorage.getItem("modo"),
+            duracion: `${minutos}:${segundos}`,
+            fecha: new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" })
+        };
         
             // Obtener historial y añadir la nueva partida
             const historial = JSON.parse(localStorage.getItem("historial")) || [];
