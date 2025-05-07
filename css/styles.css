@@ -48,7 +48,6 @@ select {
     background: linear-gradient(rgb(85, 0, 85), rgb(10, 0, 39) );
 }
 
-
 .tablaIndex {
   position: relative;
   margin: 0 auto;
@@ -60,8 +59,6 @@ select {
   z-index: 1;
   margin-bottom: -2%;
   margin-top: -2%;
-
-  
 }
 
 table::before {
@@ -83,8 +80,6 @@ table::before {
     -webkit-text-stroke: 0.2px #000000
 }
 
-
-
 th{
     padding: 9px;
     font-size: xx-large;
@@ -104,7 +99,6 @@ th{
     color: #ffffff;
     font-family: "Tagesschrift", cursive;
     letter-spacing: 2px;
-    
 }
 
 .boton:hover, 
@@ -133,49 +127,48 @@ th{
 }
 
 .select-wrapper {
-    position: relative;
-    width: 90%;
-    margin: 10px auto;
-    font-size: 1.1em;
+  position: relative;
+  width: 90%;
+  margin: 10px auto;
+  font-size: 1.1em;
   }
   
-  .selected-option {
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: 2px solid #968dad;
-    border-radius: 8px;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    transition: 0.3s;
-  }
-  select:hover{
-    outline: none;
-    border-color: #7700ff; 
-    box-shadow: 0 0 10px #7700ff; 
-    background: rgba(0, 0, 0, 0.3); 
+.selected-option {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 2px solid #968dad;
+  border-radius: 8px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: 0.3s;
+ }
+select:hover{
+ outline: none;
+ border-color: #7700ff; 
+ box-shadow: 0 0 10px #7700ff; 
+ background: rgba(0, 0, 0, 0.3); 
   }
 
-  
-  .option-list {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    right: 0;
-    background: #111;
-    border: 2px solid #54014d;
-    border-radius: 8px;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease;
+.option-list {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: #111;
+  border: 2px solid #54014d;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
   }
   
   .option-item {
-    padding: 10px;
-    cursor: pointer;
-    transition: background 0.2s;
-    color: white;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: white;
   }
   
   .option-item:hover {
@@ -355,7 +348,6 @@ html, body {
   50%{
     opacity: 50;
   }
-  
 }
 .carta {
     perspective: 1000px;
