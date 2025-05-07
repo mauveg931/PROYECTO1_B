@@ -47,16 +47,7 @@ select {
     color: black;
     background: linear-gradient(rgb(85, 0, 85), rgb(10, 0, 39) );
 }
-.videoFondo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  opacity: 105%;
-}
+
 
 table {
   position: relative;
@@ -412,6 +403,8 @@ html, body {
   color: white
 }
 
+
 .tablaHistorial{
   border: 1px solid black;
 }
+/*Ránking*/
