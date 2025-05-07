@@ -47,27 +47,18 @@ select {
     color: black;
     background: linear-gradient(rgb(85, 0, 85), rgb(10, 0, 39) );
 }
-.videoFondo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  opacity: 105%;
-}
 
-table {
+.tablaIndex {
   position: relative;
   margin: 0 auto;
   width: 50%;
   background-color: transparent;
   color: white;
   font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
   z-index: 1;
-
-  
+  margin-bottom: -2%;
+  margin-top: -2%;
 }
 
 table::before {
@@ -89,8 +80,6 @@ table::before {
     -webkit-text-stroke: 0.2px #000000
 }
 
-
-
 th{
     padding: 9px;
     font-size: xx-large;
@@ -109,7 +98,7 @@ th{
     border-color: var(--hover);
     color: #ffffff;
     font-family: "Tagesschrift", cursive;
-    
+    letter-spacing: 2px;
 }
 
 .boton:hover, 
@@ -138,49 +127,48 @@ th{
 }
 
 .select-wrapper {
-    position: relative;
-    width: 90%;
-    margin: 10px auto;
-    font-size: 1.1em;
+  position: relative;
+  width: 90%;
+  margin: 10px auto;
+  font-size: 1.1em;
   }
   
-  .selected-option {
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: 2px solid #968dad;
-    border-radius: 8px;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    transition: 0.3s;
-  }
-  select:hover{
-    outline: none;
-    border-color: #7700ff; 
-    box-shadow: 0 0 10px #7700ff; 
-    background: rgba(0, 0, 0, 0.3); 
+.selected-option {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 2px solid #968dad;
+  border-radius: 8px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: 0.3s;
+ }
+select:hover{
+ outline: none;
+ border-color: #7700ff; 
+ box-shadow: 0 0 10px #7700ff; 
+ background: rgba(0, 0, 0, 0.3); 
   }
 
-  
-  .option-list {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    right: 0;
-    background: #111;
-    border: 2px solid #54014d;
-    border-radius: 8px;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 1000;
-    animation: fadeIn 0.3s ease;
+.option-list {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: #111;
+  border: 2px solid #54014d;
+  border-radius: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
   }
   
   .option-item {
-    padding: 10px;
-    cursor: pointer;
-    transition: background 0.2s;
-    color: white;
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: white;
   }
   
   .option-item:hover {
@@ -264,13 +252,10 @@ html, body {
     display: flex;
     flex-direction: left;
     font-family: "Tagesschrift", cursive;
+    letter-spacing: 2px;
 
  }
-  .volver {
-    display: flex;
-    flex-direction: column;
-    font-family: "Tagesschrift", cursive;
-  }
+ 
   .tiempo {
     position: fixed;
     top: 20px; 
@@ -279,11 +264,12 @@ html, body {
     font-family: "Tagesschrift", cursive;
     font-size: 1.2em;
     z-index: 20;
+    letter-spacing: 2px;
   }
   
   .puntos {
     font-family: "Tagesschrift", cursive;
-    
+    letter-spacing: 2px;
     padding-left: 5%;
   }
   
@@ -291,10 +277,13 @@ html, body {
     font-family: "Tagesschrift", cursive;
     text-align: right;
     padding-right: 5%;
+    letter-spacing: 2px;
+
   }
   
   .volver {
     font-family: "Tagesschrift", cursive;
+    letter-spacing: 2px;
     width: auto;
     height: auto;
     position: absolute;
@@ -302,6 +291,8 @@ html, body {
     bottom: 50%;
     transform: translate(-50%, 50%);
     margin: 0;
+    display: flex;
+    flex-direction: column;
   }
   .boton{
     width: auto;
@@ -357,7 +348,6 @@ html, body {
   50%{
     opacity: 50;
   }
-  
 }
 .carta {
     perspective: 1000px;
@@ -403,4 +393,50 @@ html, body {
 html, body {
   overflow-x: hidden;
   overflow-y: auto; 
+}
+
+/*Historial*/
+
+.tituloHistorial{
+  font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
+  color: white;
+  margin-top: -3%;
+}
+
+
+.tablaHistorial{
+  position: relative;
+  margin: 0 auto;
+  width: 50%;
+  background-color: transparent;
+  color: white;
+  font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
+  z-index: 1;
+  border: 1px solid black;
+  width: 20px;
+  height: 20%;
+  padding-bottom: 5%;
+}
+
+/*Ranking*/
+.tablaRanking{
+  position: relative;
+  margin: 0 auto;
+  width: 50%;
+  background-color: transparent;
+  color: white;
+  font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
+  z-index: 1;
+  font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
+  color: white
+}
+.tituloRanking{
+  font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
+  color: white;
+  margin-top: -3%;
 }

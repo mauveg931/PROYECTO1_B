@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const fondoImg = document.getElementsByClassName("fondo1")[0];
     const temp = document.getElementById("tiempo");
     const campojuego = document.getElementById("campojuego");
-
+    let tiempoTranscurrido = 0;
+    let intervalo;
     /**
      * configuración personalizada
      */
@@ -95,14 +96,14 @@ document.addEventListener("DOMContentLoaded", () => {
     function fin() {
         const user = localStorage.getItem("nombre") || "Usuario:";
         const crono = localStorage.getItem("temporizador") !== "desactivado";
-    
+
         document.getElementById("pantallaFinal").style.display = "block";
-    
+
         document.getElementById("campojuego").style.display = "none";
-    
+
         document.getElementById("resultadoNombre").textContent = `Nombre: ${user}`;
         document.getElementById("resultadoMovimientos").textContent = `Movimientos: ${contMovimientos}`;
-    
+
         if (crono) {
 
             document.getElementById("resultadoTiempo").textContent = `Tiempo: ${crono}`;
@@ -184,6 +185,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (contAciertos === totalCartas / 2) {
                         fin();
+                        const partida = {
+                            nombre: nombreJugador,
+                            dificultad: nivel,
+                            tema: temaSeleccionado,
+                            modo: modoJuego,
+                            duracion: tiempoEnSegundos,
+                            movimientos: totalIntentos,
+                            aciertos: totalAciertos,
+                            fecha: new Date().toLocaleString(),
+                        };
+                        const historial = JSON.parse(localStorage.getItem("historial")) || [];
+                        historial.push(partida);
+                        localStorage.setItem("historial", JSON.stringify(historial));
                     }
 
                 } else {
@@ -203,8 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /**
  * crono
  */
-    let tiempoTranscurrido = 0;
-    let intervalo;
+    
 
     function iniciarCronometro() {
         if (!intervalo) {
@@ -218,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * iniciar cronometro al hacer click en la primera carta si no está desactivado
+     * iniciar cronometro al hacer click en la primera carta (no tocar cago en die)
      */
     if (temporizador !== "desactivado") {
         campojuego.addEventListener('click', () => {
@@ -233,8 +246,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const observer = new MutationObserver(() => {
         if (contAciertos === totalParejas) {
             clearInterval(intervalo);
+        const minutos = Math.floor(tiempoTranscurrido / 60).toString().padStart(2, '0');
+        const segundos = (tiempoTranscurrido % 60).toString().padStart(2, '0');
+        const partida = {
+            nombre: localStorage.getItem("nombre"),
+            dificultad: localStorage.getItem("nivel"),
+            tema: localStorage.getItem("tema"),
+            modo: localStorage.getItem("modo"),
+            duracion: `${minutos}:${segundos}`, 
+            movimientos: contMovimientos,
+            aciertos: contAciertos,
+            fecha: new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" })
+        };
+        
+            /**
+             * refrescar historial
+             */
+            const historial = JSON.parse(localStorage.getItem("historial")) || [];
+            historial.push(partida);
+            localStorage.setItem("historial", JSON.stringify(historial));
         }
+        
     });
 
     observer.observe(aciertos, { childList: true });
+
 });
