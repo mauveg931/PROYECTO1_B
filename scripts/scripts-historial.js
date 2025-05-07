@@ -15,7 +15,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-   
+    function mostrarRanking(historial) {
+        // Asegurarse de que los puntos estén calculados
+        historial.forEach(partida => {
+            const aciertos = parseInt(partida.aciertos);
+            const movimientos = parseInt(partida.movimientos);
+            const duracion = parseFloat(partida.duracion);
+    
+            if (!isNaN(aciertos) && !isNaN(movimientos) && !isNaN(duracion)) {
+                partida.puntos = calcularPuntos(aciertos, movimientos, duracion);
+            } else {
+                partida.puntos = 0;
+            }
+        });
+    
+        // Ordenar por puntos descendente y tomar top 5
+        const top5 = historial.sort((a, b) => b.puntos - a.puntos).slice(0, 5);
+    
+        // IDs para colocar los nombres
+        const ids = ["primero", "segundo", "tercero", "cuarto", "quinto"];
+        const puntuaciones = document.querySelectorAll(".puntuacion");
+    
+        top5.forEach((partida, index) => {
+            document.getElementById(ids[index]).textContent = partida.nombre || "Anónimo";
+            puntuaciones[index].textContent = partida.puntos + " puntos";
+        });
+    }
+    
+    // Llamar a la función después de cargar el historial
+    mostrarRanking(historial);
 /**
  * crear historial
  */
