@@ -9,10 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const aciertos = document.getElementById('aciertos'); 
 
     function calcularPuntos(aciertos, movimientos, tiempo) {
-    const puntos = (aciertos * 10) - (movimientos * 5) - (tiempo*0.5) ;
+    const puntos = (aciertos * 10) - (movimientos * 5) - (tiempo*0.5);
 
-
+    
     }
+
+
+    
     /**
      * funcion formato de tiempo
      */
