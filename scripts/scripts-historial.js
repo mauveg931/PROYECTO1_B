@@ -2,7 +2,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const cuerpo = document.getElementById("cuerpoHistorial");
     const historial = JSON.parse(localStorage.getItem("historial")) || [];
 
-    // Función para formatear la duración en formato 00:00
+    /**
+    * calcular puntuaciones
+    */
+    const movimientos = document.getElementById('movimientos');
+    const aciertos = document.getElementById('aciertos'); 
+
+    function calcularPuntos(aciertos, movimientos, tiempo) {
+    var puntosFinales = (aciertos * 10) - (movimientos * 5) - (tiempo*0.5) ;
+
+
+    }
+    /**
+     * funcion formato de tiempo
+     */
     const formatearDuracion = (duracion) => {
         const minutos = Math.floor(duracion / 60);
         const segundos = duracion % 60;
