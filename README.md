@@ -63,7 +63,7 @@ Funcionalidad del temporizador, pulir fuentes y cohesión en la estética.
 
 ## SESION 4 (06/05/2025)
 **RESUMEN**
-Temporizador, comienzo de pantalla final, cambios estéticos, documentación de cdigo.
+Temporizador, comienzo de pantalla final, cambios estéticos, documentación de codigo.
 **DIFICULTADES**
 **SOLUCIONES**
 **FUENTES CONSULTADAS**
@@ -75,3 +75,17 @@ https://developer.mozilla.org/es/docs/Web/API/Window/setTimeout
 Cambio en la estética.
 **IDEAS DE MEJORA**
 Pantalla final.
+
+## SESION 5 (07/05/2025)
+**RESUMEN**
+Creación de paginas html y scripts para ranking e historial. Lógica para calcular puntuaciones.
+**DIFICULTADES**
+Lógica para puntos, uso de los datos recogidos.
+**SOLUCIONES**
+
+**FUENTES CONSULTADAS**
+
+**DECISIONES TÉCNICAS**
+Hacer varias páginas
+**IDEAS DE MEJORA**
+Optimizar el código, funcionalidad de la pantalla final.
