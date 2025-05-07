@@ -29,10 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         historial.forEach((partida) => {
             const fila = document.createElement("tr");
-
             const aciertos = parseInt(partida.aciertos);
-    const movimientos = parseInt(partida.movimientos);
-    const duracion = parseFloat(partida.duracion);
+            const movimientos = parseInt(partida.movimientos);
+            const duracion = parseFloat(partida.duracion);
 
     // Verifica que los datos sean válidos antes de calcular
     if (!isNaN(aciertos) && !isNaN(movimientos) && !isNaN(duracion)) {
