@@ -56,6 +56,7 @@ table {
   background-color: transparent;
   color: white;
   font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
   z-index: 1;
 
   
@@ -100,6 +101,7 @@ th{
     border-color: var(--hover);
     color: #ffffff;
     font-family: "Tagesschrift", cursive;
+    letter-spacing: 2px;
     
 }
 
@@ -255,13 +257,10 @@ html, body {
     display: flex;
     flex-direction: left;
     font-family: "Tagesschrift", cursive;
+    letter-spacing: 2px;
 
  }
-  .volver {
-    display: flex;
-    flex-direction: column;
-    font-family: "Tagesschrift", cursive;
-  }
+ 
   .tiempo {
     position: fixed;
     top: 20px; 
@@ -270,11 +269,12 @@ html, body {
     font-family: "Tagesschrift", cursive;
     font-size: 1.2em;
     z-index: 20;
+    letter-spacing: 2px;
   }
   
   .puntos {
     font-family: "Tagesschrift", cursive;
-    
+    letter-spacing: 2px;
     padding-left: 5%;
   }
   
@@ -282,10 +282,13 @@ html, body {
     font-family: "Tagesschrift", cursive;
     text-align: right;
     padding-right: 5%;
+    letter-spacing: 2px;
+    
   }
   
   .volver {
     font-family: "Tagesschrift", cursive;
+    letter-spacing: 2px;
     width: auto;
     height: auto;
     position: absolute;
@@ -293,6 +296,8 @@ html, body {
     bottom: 50%;
     transform: translate(-50%, 50%);
     margin: 0;
+    display: flex;
+    flex-direction: column;
   }
   .boton{
     width: auto;
@@ -400,6 +405,7 @@ html, body {
 
 .tituloHistorial{
   font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
   color: white;
   margin-top: -3%;
 }
@@ -411,14 +417,14 @@ html, body {
   height: 20%;
 }
 /*Ranking*/
-/*Ránking*/
 .tablaRanking{
   font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
   color: white
-
 }
 .tituloRanking{
   font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
   color: white;
   margin-top: -3%;
 }
