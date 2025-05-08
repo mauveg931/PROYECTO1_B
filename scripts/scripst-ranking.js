@@ -34,8 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
         
         const top5 = historial.sort((a, b) => b.puntos - a.puntos).slice(0, 5);
-    
-        
         const ids = ["primero", "segundo", "tercero", "cuarto", "quinto"];
         const puntuaciones = document.querySelectorAll(".puntuacion");
     

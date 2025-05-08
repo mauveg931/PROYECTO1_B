@@ -3,7 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const audio = document.getElementById('bg-audio');
 
-  // Solo una vez: reproduce el audio después de la primera interacción
+  /**
+   * reproducir audio en index al hacer un click
+   */
   const activarAudio = () => {
       audio.play().then(() => {
           console.log("Audio reproduciéndose.");
@@ -11,7 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
           console.warn("El navegador bloqueó la reproducción automática:", error);
       });
 
-      // Elimina el evento para que no se repita
+      /**
+       * eliminar evento para que no se reinicie a cada click
+       */
       document.removeEventListener('click', activarAudio);
   };
   document.addEventListener('click', activarAudio);
@@ -70,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /**
-   * botón
+   * botón iniciar partida
    */
   btn.addEventListener("click", () => {
     const nivel = document.getElementById("nivel").value;
