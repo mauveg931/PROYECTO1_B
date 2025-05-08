@@ -145,6 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
             celda.addEventListener('click', () =>{
                 celda.classList.remove('volteada');
             });
+            //modo normal
         }else if (modo === "normal") {
         celda.addEventListener('click', () => {
             if (bloqueo || celda.classList.contains('volteada')) return;
