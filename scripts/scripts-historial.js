@@ -6,8 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     * calcular puntuaciones
     */
 
-     
- 
      function calcularPuntos(aciertos, movimientos, tiempoTranscurrido) {
      const puntos = (aciertos * 50) - (movimientos * 2) - (tiempoTranscurrido*0.5);
      return Math.max(0, Math.round(puntos));
