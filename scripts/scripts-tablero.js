@@ -150,6 +150,29 @@ document.addEventListener("DOMContentLoaded", () => {
          celda.appendChild(contenedor);
  
          celda.dataset.id = imagenes[i].id;
+
+         // Crear el objeto de audio
+let musicaFondo = new Audio();
+
+// Elegir canción según el tema
+if (tema === "Super Mario Bros") {
+    musicaFondo.src = "../audio/Super Mario 64 Soundtrack - Dire, Dire Docks.mp3";
+} else if (tema === "Castlevania") {
+    musicaFondo.src = "../audio/Marble Gallery - Castlevania Symphony of the Night OST.mp3";
+} else if (tema === "Metal Gear") {
+    musicaFondo.src = "../audio/01 - Metal Gear Solid Main Theme.mp3";
+}
+
+// Configurar el audio
+musicaFondo.loop = true;
+musicaFondo.volume = 0.01;
+
+// Iniciar después de interacción (ej. clic en el campo de juego)
+campojuego.addEventListener("click", () => {
+    if (musicaFondo.paused) {
+        musicaFondo.play().catch(e => console.warn("Autoplay bloqueado:", e));
+    }
+}, { once: true }); // solo una vez
  
          //modo flash
          if (modo === "flash"){
