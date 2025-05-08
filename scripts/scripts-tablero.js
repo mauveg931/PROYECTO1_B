@@ -148,12 +148,12 @@ if (tema === "Super Mario Bros") {
 musicaFondo.loop = true;
 musicaFondo.volume = 0.01;
 
-// Iniciar después de interacción (ej. clic en el campo de juego)
+// Iniciar después de click
 campojuego.addEventListener("click", () => {
     if (musicaFondo.paused) {
         musicaFondo.play().catch(e => console.warn("Autoplay bloqueado:", e));
     }
-}, { once: true }); // solo una vez
+}, { once: true }); 
 
         /**
          * evento de click de carta
@@ -274,9 +274,10 @@ campojuego.addEventListener("click", () => {
         
     });
     
-/**
+    /**
      * funcion pantalla de fin de partida
      */
+    
 function fin() {
     const user = localStorage.getItem("nombre") || "Usuario:";
     const crono = localStorage.getItem("temporizador") !== "desactivado";
