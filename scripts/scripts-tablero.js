@@ -183,6 +183,66 @@ campojuego.addEventListener("click", () => {
  
              celda.addEventListener('click', () =>{
                  celda.classList.remove('volteada');
+                 if (!primeraCarta) {
+                    primeraCarta = celda;
+                } else {
+                    segundaCarta = celda;
+                    bloqueo = true;
+
+                    const id1 = primeraCarta.dataset.id;
+                    const id2 = segundaCarta.dataset.id;
+
+                    contMovimientos++;
+                    movimientos.textContent = contMovimientos;
+
+                    /**
+                     * comparar cartas
+                     */
+                    if (id1 === id2) {
+                        primeraCarta.classList.add('volteada');
+                        segundaCarta.classList.add('volteada');
+                        primeraCarta = null;
+                        segundaCarta = null;
+                        bloqueo = false;
+                        setTimeout(() => {
+                            primeraCarta.classList.remove('volteada');
+                            segundaCarta.classList.remove('volteada');
+                            primeraCarta = null;
+                            segundaCarta = null;
+                            bloqueo = false;
+                        }, 1000);
+                        
+                        contAciertos++;
+                        aciertos.textContent = contAciertos;
+
+                        if (contAciertos === totalCartas / 2) {
+                            fin();
+                            const partida = {
+                                nombre: nombreJugador,
+                                dificultad: nivel,
+                                tema: temaSeleccionado,
+                                modo: modoJuego,
+                                duracion: tiempoEnSegundos,
+                                movimientos: totalIntentos,
+                                aciertos: totalAciertos,
+                                fecha: new Date().toLocaleString(),
+                            };
+                            const historial = JSON.parse(localStorage.getItem("historial")) || [];
+                            historial.push(partida);
+                            localStorage.setItem("historial", JSON.stringify(historial));
+                        }
+
+                    } else {
+                        setTimeout(() => {
+                            primeraCarta.classList.remove('volteada');
+                            segundaCarta.classList.remove('volteada');
+                            primeraCarta = null;
+                            segundaCarta = null;
+                            bloqueo = false;
+                        }, 1000);
+                    }
+                }
+                 
              });
          }
  
