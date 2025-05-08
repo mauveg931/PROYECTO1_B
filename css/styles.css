@@ -193,8 +193,27 @@ select:hover{
   
 /*Tablero*/
 .pantallaFinal{
-  background-color: whitesmoke;
+ 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  background-color: #54014d;
+  color: white;
+  font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
+
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  z-index: 1000;
 }
+
+
 .datosJuego{
   margin-top: 2%;
   width: 99%;
@@ -251,13 +270,6 @@ html, body {
     justify-content: space-between;
     align-items: flex-end;
   }
- .puntos{
-    display: flex;
-    flex-direction: left;
-    font-family: "Tagesschrift", cursive;
-    letter-spacing: 2px;
-
- }
  
   .tiempo {
     position: fixed;
@@ -271,6 +283,8 @@ html, body {
   }
   
   .puntos {
+    display: flex;
+    flex-direction: left;
     font-family: "Tagesschrift", cursive;
     letter-spacing: 2px;
     padding-left: 5%;
@@ -446,12 +460,12 @@ html, body {
   margin-top: -3%;
 }
 .cruz-error {
-  position: absolute;  /* Posicionarla sobre la carta */
-  top: 50%;  /* Centrar verticalmente */
-  left: 50%;  /* Centrar horizontalmente */
-  transform: translate(-50%, -50%);  /* Ajuste de centramiento exacto */
-  font-size: 2rem;  /* Asegúrate de que sea lo suficientemente grande */
-  color: black;  /* Color de la cruz (negra) */
-  font-weight: bold;  /* Texto en negrita */
-  z-index: 10;  /* Asegúrate de que la cruz esté por encima de la carta */
+  position: absolute;  
+  top: 50%;  
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 2rem; 
+  color: black; 
+  font-weight: bold; 
+  z-index: 10; 
 }
