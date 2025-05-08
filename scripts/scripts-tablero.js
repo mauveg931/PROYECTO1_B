@@ -132,10 +132,14 @@ document.addEventListener("DOMContentLoaded", () => {
         celda.dataset.id = imagenes[i].id;
 
         
-// Crear el objeto de audio
+/**
+ * objeto audio
+ */
 let musicaFondo = new Audio();
 
-// Elegir canción según el tema
+/**
+ * pista segun tema
+ */
 if (tema === "Super Mario Bros") {
     musicaFondo.src = "../audio/Super Mario 64 Soundtrack - Dire, Dire Docks.mp3";
 } else if (tema === "Castlevania") {
@@ -144,20 +148,26 @@ if (tema === "Super Mario Bros") {
     musicaFondo.src = "../audio/01 - Metal Gear Solid Main Theme.mp3";
 }
 
-// Configurar el audio
+/**config audio */
 musicaFondo.loop = true;
 musicaFondo.volume = 0.01;
 
-// Iniciar después de click
+/**
+ * inicio de audio despues del click
+ */
 campojuego.addEventListener("click", () => {
     if (musicaFondo.paused) {
         musicaFondo.play().catch(e => console.warn("Autoplay bloqueado:", e));
     }
 }, { once: true }); // solo una vez
  
-         //modo flash
+         /**
+          * MODO FLASH
+          */
          if (modo === "flash") {
-            // Mostrar todas las cartas volteadas durante 5 segundos
+           /**
+            * mostrar cartas volteadas
+            */
             celda.classList.add('volteada');   
         
             setTimeout(() => {
@@ -165,7 +175,9 @@ campojuego.addEventListener("click", () => {
             }, 5000);
         
             celda.addEventListener('click', () => {
-                // Evitar que se pueda hacer clic en la misma carta
+                /**
+                 * bloqueo de click en misma carta
+                 */
                 if (bloqueo || celda === primeraCarta || celda.classList.contains('volteada')) return;
         
                 celda.classList.remove('volteada');
@@ -183,7 +195,9 @@ campojuego.addEventListener("click", () => {
                     movimientos.textContent = contMovimientos;
         
                     if (id1 === id2) {
-                        // Si las cartas coinciden, se dejan volteadas
+                       /**
+                        * dejar voltadas si aciertas
+                        */
                         primeraCarta.classList.add('volteada');
                         segundaCarta.classList.add('volteada');
                         
@@ -193,7 +207,9 @@ campojuego.addEventListener("click", () => {
         
                         contAciertos++;
                         aciertos.textContent = contAciertos;
-        
+                        /**
+                         * fin partida
+                         */
                         if (contAciertos === totalCartas / 2) {
                             fin();
                             const partida = {
@@ -211,7 +227,9 @@ campojuego.addEventListener("click", () => {
                             localStorage.setItem("historial", JSON.stringify(historial));
                         }
                     } else {
-                        // Si las cartas no coinciden, mostrar cruz y no voltear
+                        /**
+                         * mostrar error si no aciertas
+                         */
                         mostrarCruzVisual(primeraCarta);
                         mostrarCruzVisual(segundaCarta);
         
@@ -225,30 +243,33 @@ campojuego.addEventListener("click", () => {
             });
         }
         
-        // Función para reiniciar las cartas después de un intento
+        /**
+         * reset de cartas despues de un intento
+         */
         function resetCartas() {
             primeraCarta = null;
             segundaCarta = null;
             bloqueo = false;
         }
         
-        // Función para mostrar la cruz visual en las cartas incorrectas
-        // Función para mostrar la cruz visual en las cartas incorrectas
+        /**
+         *  Función para mostrar la cruz visual en las cartas incorrectas en el modo flash
+         */ 
         function mostrarCruzVisual(carta) {
             const cruz = document.createElement('div');
-            cruz.className = 'cruz-error';  // Asignar la clase CSS para estilos
-            cruz.textContent = 'X';  // Asignar la letra 'X' como contenido
-            carta.appendChild(cruz);  // Añadir la cruz a la carta
+            cruz.className = 'cruz-error';  
+            cruz.textContent = 'X';  
+            carta.appendChild(cruz);  
 
             setTimeout(() => {
-                carta.removeChild(cruz);  // Eliminar la cruz después de un tiempo
-            }, 800);  // Duración de la cruz en milisegundos
+                carta.removeChild(cruz);  
+            }, 800);  
         }
 
-        
-
- 
-            if (modo === "normal") {
+        /**
+         * MODO NORMAL
+         */
+             if (modo === "normal") {
              celda.addEventListener('click', () => {
                  if (bloqueo || celda.classList.contains('volteada')) return;
  
@@ -277,7 +298,9 @@ campojuego.addEventListener("click", () => {
                          
                          contAciertos++;
                          aciertos.textContent = contAciertos;
- 
+                        /**
+                         * final de partida
+                         */
                          if (contAciertos === totalCartas / 2) {
                              fin();
                              const partida = {
@@ -310,10 +333,8 @@ campojuego.addEventListener("click", () => {
          campojuego.appendChild(celda);
      }
  /**
-  * crono
+  * iniciar crono
   */
-     
- 
      function iniciarCronometro() {
          if (!intervalo) {
              intervalo = setInterval(() => {
@@ -343,6 +364,9 @@ campojuego.addEventListener("click", () => {
              clearInterval(intervalo);
          const minutos = Math.floor(tiempoTranscurrido / 60).toString().padStart(2, '0');
          const segundos = (tiempoTranscurrido % 60).toString().padStart(2, '0');
+         /**
+          * datos para ranking e historial
+          */
          const partida = {
              nombre: localStorage.getItem("nombre"),
              dificultad: localStorage.getItem("nivel"),
@@ -377,24 +401,46 @@ campojuego.addEventListener("click", () => {
      * funcion pantalla de fin de partida
      */
     function fin() {
-        const puntosFinal = calcularPuntos(contAciertos, contMovimientos, tiempoTranscurrido);
-        const user = localStorage.getItem("nombre") || "Usuario";
-        const crono = localStorage.getItem("temporizador") !== "desactivado";
-        const puntos = document.getElementById('puntos');
-        document.getElementById("pantallaFinal").style.display = "block";
-        document.getElementById("campojuego").style.display = "none";
-    
-        puntos.textContent = puntosFinal;
-    
-        document.getElementById("resultadoNombre").textContent = `Jugador: ${user}`;
-        document.getElementById("resultadoPuntos").textContent = `Puntos:  ${puntosFinal}`;
-    
-        if (crono) {
-            document.getElementById("resultadoTiempo").textContent = `${temp.textContent}`;
-        } else {
-            document.getElementById("resultadoTiempo").textContent = `Tiempo: Sin temporizador`;
-        }
+        setTimeout(() => {
+            const puntosFinal = calcularPuntos(contAciertos, contMovimientos, tiempoTranscurrido);
+            const user = localStorage.getItem("nombre") || "Usuario";
+            const crono = localStorage.getItem("temporizador") !== "desactivado";
+            const puntos = document.getElementById('puntos');
+            document.getElementById("pantallaFinal").style.display = "block";
+            document.getElementById("campojuego").style.display = "none";
+        
+            puntos.textContent = puntosFinal;
+        
+            document.getElementById("resultadoNombre").textContent = `Jugador: ${user}`;
+            document.getElementById("resultadoPuntos").textContent = `Puntos:  ${puntosFinal}`;
+        
+            if (crono) {
+                document.getElementById("resultadoTiempo").textContent = `${temp.textContent}`;
+            } else {
+                document.getElementById("resultadoTiempo").textContent = `Tiempo: Sin temporizador`;
+
+            }
+            /**
+             * compartir en facebook
+             */
+            document.getElementById("compartirFacebook").addEventListener("click", function() {
+                const user = localStorage.getItem("nombre") || "Jugador";
+                const puntos = document.getElementById("resultadoPuntos").textContent;
+                const tiempo = document.getElementById("resultadoTiempo").textContent;
+                const texto = encodeURIComponent(`¡He conseguido ${puntos} en ${tiempo} en Memorium!`);
+            
+                const url = encodeURIComponent(window.location.href); 
+                const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${texto}`;
+            
+                window.open(facebookUrl, "_blank");
+            });
+            
+            /**
+             * retraso para que se vea la ultima carta
+             */
+            
+        }, 750); 
     }
-     observer.observe(aciertos, { childList: true });
+    observer.observe(aciertos, { childList: true });
  
- });
+});
