@@ -192,6 +192,9 @@ select:hover{
   }
   
 /*Tablero*/
+.pantallaFinal{
+  background-color: whitesmoke;
+}
 .datosJuego{
   margin-top: 2%;
   width: 99%;
