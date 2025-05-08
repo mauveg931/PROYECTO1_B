@@ -156,46 +156,44 @@ campojuego.addEventListener("click", () => {
 }, { once: true }); // solo una vez
  
          //modo flash
-         if (modo === "flash"){
-             celda.classList.add('volteada');   
-             setTimeout(() => {
-                 celda.classList.remove('volteada');
-             }, 5000); 
- 
-             celda.addEventListener('click', () =>{
-                 celda.classList.remove('volteada');
-                 if (!primeraCarta) {
+         if (modo === "flash") {
+            // Mostrar todas las cartas volteadas durante 5 segundos
+            celda.classList.add('volteada');   
+        
+            setTimeout(() => {
+                celda.classList.remove('volteada');
+            }, 5000);
+        
+            celda.addEventListener('click', () => {
+                // Evitar que se pueda hacer clic en la misma carta
+                if (bloqueo || celda === primeraCarta || celda.classList.contains('volteada')) return;
+        
+                celda.classList.remove('volteada');
+        
+                if (!primeraCarta) {
                     primeraCarta = celda;
                 } else {
                     segundaCarta = celda;
                     bloqueo = true;
-
+        
                     const id1 = primeraCarta.dataset.id;
                     const id2 = segundaCarta.dataset.id;
-
+        
                     contMovimientos++;
                     movimientos.textContent = contMovimientos;
-
-                    /**
-                     * comparar cartas
-                     */
+        
                     if (id1 === id2) {
+                        // Si las cartas coinciden, se dejan volteadas
                         primeraCarta.classList.add('volteada');
                         segundaCarta.classList.add('volteada');
+                        
                         primeraCarta = null;
                         segundaCarta = null;
                         bloqueo = false;
-                        setTimeout(() => {
-                            primeraCarta.classList.remove('volteada');
-                            segundaCarta.classList.remove('volteada');
-                            primeraCarta = null;
-                            segundaCarta = null;
-                            bloqueo = false;
-                        }, 1000);
-                        
+        
                         contAciertos++;
                         aciertos.textContent = contAciertos;
-
+        
                         if (contAciertos === totalCartas / 2) {
                             fin();
                             const partida = {
@@ -212,26 +210,45 @@ campojuego.addEventListener("click", () => {
                             historial.push(partida);
                             localStorage.setItem("historial", JSON.stringify(historial));
                         }
-
                     } else {
+                        // Si las cartas no coinciden, mostrar cruz y no voltear
+                        mostrarCruzVisual(primeraCarta);
+                        mostrarCruzVisual(segundaCarta);
+        
                         setTimeout(() => {
                             primeraCarta.classList.remove('volteada');
                             segundaCarta.classList.remove('volteada');
-                            primeraCarta = null;
-                            segundaCarta = null;
-                            bloqueo = false;
+                            resetCartas();
                         }, 1000);
                     }
                 }
-                 
-             });
-         }
+            });
+        }
+        
+        // Función para reiniciar las cartas después de un intento
+        function resetCartas() {
+            primeraCarta = null;
+            segundaCarta = null;
+            bloqueo = false;
+        }
+        
+        // Función para mostrar la cruz visual en las cartas incorrectas
+        // Función para mostrar la cruz visual en las cartas incorrectas
+        function mostrarCruzVisual(carta) {
+            const cruz = document.createElement('div');
+            cruz.className = 'cruz-error';  // Asignar la clase CSS para estilos
+            cruz.textContent = 'X';  // Asignar la letra 'X' como contenido
+            carta.appendChild(cruz);  // Añadir la cruz a la carta
+
+            setTimeout(() => {
+                carta.removeChild(cruz);  // Eliminar la cruz después de un tiempo
+            }, 800);  // Duración de la cruz en milisegundos
+        }
+
+        
+
  
-         /**
-          * evento de click de carta
-          */
- 
-             else if (modo === "normal") {
+            if (modo === "normal") {
              celda.addEventListener('click', () => {
                  if (bloqueo || celda.classList.contains('volteada')) return;
  

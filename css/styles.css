@@ -445,3 +445,13 @@ html, body {
   color: white;
   margin-top: -3%;
 }
+.cruz-error {
+  position: absolute;  /* Posicionarla sobre la carta */
+  top: 50%;  /* Centrar verticalmente */
+  left: 50%;  /* Centrar horizontalmente */
+  transform: translate(-50%, -50%);  /* Ajuste de centramiento exacto */
+  font-size: 2rem;  /* Asegúrate de que sea lo suficientemente grande */
+  color: black;  /* Color de la cruz (negra) */
+  font-weight: bold;  /* Texto en negrita */
+  z-index: 10;  /* Asegúrate de que la cruz esté por encima de la carta */
+}
