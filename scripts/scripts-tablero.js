@@ -89,28 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const movimientos = document.getElementById('movimientos');
     const aciertos = document.getElementById('aciertos');  
-
-    /**
-     * funcion pantalla de fin de partida
-     */
-    function fin() {
-        const user = localStorage.getItem("nombre") || "Usuario:";
-        const crono = localStorage.getItem("temporizador") !== "desactivado";
-
-        document.getElementById("pantallaFinal").style.display = "block";
-
-        document.getElementById("campojuego").style.display = "none";
-
-        document.getElementById("resultadoNombre").textContent = `Nombre: ${user}`;
-        document.getElementById("resultadoMovimientos").textContent = `Movimientos: ${contMovimientos}`;
-
-        if (crono) {
-
-            document.getElementById("resultadoTiempo").textContent = `Tiempo: ${crono}`;
-        } else {
-        }
-    }
-
+    const puntos= document.getElementById('puntos');
+    
     /**
      * crear cartas
      */
@@ -198,6 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         const historial = JSON.parse(localStorage.getItem("historial")) || [];
                         historial.push(partida);
                         localStorage.setItem("historial", JSON.stringify(historial));
+                        fin();
                     }
 
                 } else {
@@ -231,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * iniciar cronometro al hacer click en la primera carta (no tocar cago en die)
+     * iniciar cronometro al hacer click en la primera carta 
      */
     if (temporizador !== "desactivado") {
         campojuego.addEventListener('click', () => {
@@ -268,6 +249,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
     });
+    
+/**
+     * funcion pantalla de fin de partida
+     */
+function fin() {
+    const user = localStorage.getItem("nombre") || "Usuario:";
+    const crono = localStorage.getItem("temporizador") !== "desactivado";
+
+    document.getElementById("pantallaFinal").style.display = "block";
+
+    document.getElementById("campojuego").style.display = "none";
+
+    document.getElementById("resultadoNombre").textContent = `Jugador: ${user}`;
+    document.getElementById("resultadoPuntos").textContent = `Puntos: ${puntos}`;
+
+    if (crono) {
+
+        document.getElementById("resultadoTiempo").textContent = `Tiempo: ${crono}`;
+    } else {
+    }
+}
 
     observer.observe(aciertos, { childList: true });
 
