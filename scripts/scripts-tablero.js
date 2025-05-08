@@ -89,8 +89,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const movimientos = document.getElementById('movimientos');
     const aciertos = document.getElementById('aciertos');  
-    const puntos= document.getElementById('puntos');
-    
+
+    /**
+     * funcion pantalla de fin de partida
+     */
+    function fin() {
+        const user = localStorage.getItem("nombre") || "Usuario:";
+        const crono = localStorage.getItem("temporizador") !== "desactivado";
+
+        document.getElementById("pantallaFinal").style.display = "block";
+
+        document.getElementById("campojuego").style.display = "none";
+
+        document.getElementById("resultadoNombre").textContent = `Nombre: ${user}`;
+        document.getElementById("resultadoMovimientos").textContent = `Movimientos: ${contMovimientos}`;
+
+        if (crono) {
+
+            document.getElementById("resultadoTiempo").textContent = `Tiempo: ${crono}`;
+        } else {
+        }
+    }
+
     /**
      * crear cartas
      */
@@ -131,68 +151,81 @@ document.addEventListener("DOMContentLoaded", () => {
 
         celda.dataset.id = imagenes[i].id;
 
+        //modo flash
+        if (modo === "flash"){
+            celda.classList.add('volteada');   
+            setTimeout(() => {
+                celda.classList.remove('volteada');
+            }, 5000); 
+
+            celda.addEventListener('click', () =>{
+                celda.classList.remove('volteada');
+            });
+        }
+
         /**
          * evento de click de carta
          */
-        celda.addEventListener('click', () => {
-            if (bloqueo || celda.classList.contains('volteada')) return;
 
-            celda.classList.add('volteada');
+            else if (modo === "normal") {
+            celda.addEventListener('click', () => {
+                if (bloqueo || celda.classList.contains('volteada')) return;
 
-            if (!primeraCarta) {
-                primeraCarta = celda;
-            } else {
-                segundaCarta = celda;
-                bloqueo = true;
+                celda.classList.add('volteada');
 
-                const id1 = primeraCarta.dataset.id;
-                const id2 = segundaCarta.dataset.id;
-
-                contMovimientos++;
-                movimientos.textContent = contMovimientos;
-
-                /**
-                 * comparar cartas
-                 */
-                if (id1 === id2) {
-                    primeraCarta = null;
-                    segundaCarta = null;
-                    bloqueo = false;
-
-                    
-                    contAciertos++;
-                    aciertos.textContent = contAciertos;
-
-                    if (contAciertos === totalCartas / 2) {
-                        fin();
-                        const partida = {
-                            nombre: nombreJugador,
-                            dificultad: nivel,
-                            tema: temaSeleccionado,
-                            modo: modoJuego,
-                            duracion: tiempoEnSegundos,
-                            movimientos: totalIntentos,
-                            aciertos: totalAciertos,
-                            fecha: new Date().toLocaleString(),
-                        };
-                        const historial = JSON.parse(localStorage.getItem("historial")) || [];
-                        historial.push(partida);
-                        localStorage.setItem("historial", JSON.stringify(historial));
-                        fin();
-                    }
-
+                if (!primeraCarta) {
+                    primeraCarta = celda;
                 } else {
-                    setTimeout(() => {
-                        primeraCarta.classList.remove('volteada');
-                        segundaCarta.classList.remove('volteada');
+                    segundaCarta = celda;
+                    bloqueo = true;
+
+                    const id1 = primeraCarta.dataset.id;
+                    const id2 = segundaCarta.dataset.id;
+
+                    contMovimientos++;
+                    movimientos.textContent = contMovimientos;
+
+                    /**
+                     * comparar cartas
+                     */
+                    if (id1 === id2) {
                         primeraCarta = null;
                         segundaCarta = null;
                         bloqueo = false;
-                    }, 1000);
-                }
-            }
-        });
 
+                        
+                        contAciertos++;
+                        aciertos.textContent = contAciertos;
+
+                        if (contAciertos === totalCartas / 2) {
+                            fin();
+                            const partida = {
+                                nombre: nombreJugador,
+                                dificultad: nivel,
+                                tema: temaSeleccionado,
+                                modo: modoJuego,
+                                duracion: tiempoEnSegundos,
+                                movimientos: totalIntentos,
+                                aciertos: totalAciertos,
+                                fecha: new Date().toLocaleString(),
+                            };
+                            const historial = JSON.parse(localStorage.getItem("historial")) || [];
+                            historial.push(partida);
+                            localStorage.setItem("historial", JSON.stringify(historial));
+                        }
+
+                    } else {
+                        setTimeout(() => {
+                            primeraCarta.classList.remove('volteada');
+                            segundaCarta.classList.remove('volteada');
+                            primeraCarta = null;
+                            segundaCarta = null;
+                            bloqueo = false;
+                        }, 1000);
+                    }
+                }
+            });
+        }
         campojuego.appendChild(celda);
     }
 /**
@@ -212,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /**
-     * iniciar cronometro al hacer click en la primera carta 
+     * iniciar cronometro al hacer click en la primera carta (no tocar cago en die)
      */
     if (temporizador !== "desactivado") {
         campojuego.addEventListener('click', () => {
@@ -234,7 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
             dificultad: localStorage.getItem("nivel"),
             tema: localStorage.getItem("tema"),
             modo: localStorage.getItem("modo"),
-            duracion: `${minutos}:${segundos}`, 
+            duracion: temporizador !== "desactivado" ? `${minutos}:${segundos}` : "Desactivado",
             movimientos: contMovimientos,
             aciertos: contAciertos,
             fecha: new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" })
@@ -249,27 +282,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
     });
-    
-/**
-     * funcion pantalla de fin de partida
-     */
-function fin() {
-    const user = localStorage.getItem("nombre") || "Usuario:";
-    const crono = localStorage.getItem("temporizador") !== "desactivado";
-
-    document.getElementById("pantallaFinal").style.display = "block";
-
-    document.getElementById("campojuego").style.display = "none";
-
-    document.getElementById("resultadoNombre").textContent = `Jugador: ${user}`;
-    document.getElementById("resultadoPuntos").textContent = `Puntos: ${puntos}`;
-
-    if (crono) {
-
-        document.getElementById("resultadoTiempo").textContent = `Tiempo: ${crono}`;
-    } else {
-    }
-}
 
     observer.observe(aciertos, { childList: true });
 
