@@ -1,288 +1,288 @@
 document.addEventListener("DOMContentLoaded", () => {
-   /**
-    * constantes
-    */
-    const nivel = localStorage.getItem("nivel");
-    const temporizador = localStorage.getItem("temporizador");
-    const nombre = localStorage.getItem("nombre");
-    const modo = localStorage.getItem("modo");
-    const tema = localStorage.getItem("tema");
-    const filas = localStorage.getItem("filas");
-    const columnas = localStorage.getItem("columnas");
-    const nombreScreen = document.getElementById("nombreScreen");
-    const modoScreen = document.getElementById("modoScreen");
-    const nivelScreen = document.getElementById("nivelScreen");
-    const tematicaScreen = document.getElementById("tematicaScreen");
-    const fondoImg = document.getElementsByClassName("fondo1")[0];
-    const temp = document.getElementById("tiempo");
-    const campojuego = document.getElementById("campojuego");
-    let tiempoTranscurrido = 0;
-    let intervalo;
     /**
-     * configuración personalizada
+     * constantes
      */
-
-    if (temporizador === "desactivado") {
-        temp.textContent = "TEMPORIZADOR DESACTIVADO";
-    }
-
-    if (fondoImg) {
-        if (nivel == "facil") fondoImg.src = "../img/fondorojo.png";
-        else if (nivel == "medio") fondoImg.src = "../img/fondoverde.png";
-        else if (nivel == "dificil") fondoImg.src = "../img/fondoazul.png";
-        else if (nivel == "personalizado") fondoImg.src = "../img/fondorosa.png";
-    }
-
-    nombreScreen.textContent = "Nombre: " + nombre;
-    modoScreen.textContent = "Modo: " + modo;
-    nivelScreen.textContent = "Nivel: " + nivel;
-    tematicaScreen.textContent = "Tema: " + tema;
-
-    const grid = document.getElementById('campojuego');
-
-    let fila, colum;
-    if (nivel === "facil") {
-        fila = 4; colum = 4;
-    } else if (nivel === "medio") {
-        fila = 5; colum = 4;
-    } else if (nivel === "dificil") {
-        fila = 6; colum = 6;
-    } else if (nivel === "personalizado") {
-        fila = parseInt(filas); colum = parseInt(columnas);
-    } else {
-        console.warn("Nivel no reconocido:", nivel);
-        return;
-    }
-
-    grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`;
-    grid.style.gridTemplateRows = `repeat(${fila}, 1fr)`;
-
-    const totalCartas = fila * colum;
-    /**
-     * validación numero de cartas
-     */
-    if (totalCartas % 2 !== 0) {
-        alert("El número total de cartas debe ser par.");
-        return;
-    }
-
-    /**
-     * array para las imagenes
-     */
-    const imagenes = [];
-    for (let i = 1; i <= totalCartas / 2; i++) {
-        imagenes.push({nombre: `carta${i}.png`, id: `carta${i}`});
-        imagenes.push({nombre: `carta${i} - copia.png`, id: `carta${i}`});
-    }
-
-    /**
-     * barajar cartas
-     */
-    imagenes.sort(() => Math.random() - 0.5);
-
-    let primeraCarta = null;
-    let segundaCarta = null;
-    let bloqueo = false;
-    
-    let contMovimientos = 0;
-    let contAciertos = 0;
-
-    const movimientos = document.getElementById('movimientos');
-    const aciertos = document.getElementById('aciertos');  
-
-    /**
-     * funcion pantalla de fin de partida
-     */
-    function fin() {
-        const user = localStorage.getItem("nombre") || "Usuario:";
-        const crono = localStorage.getItem("temporizador") !== "desactivado";
-
-        document.getElementById("pantallaFinal").style.display = "block";
-
-        document.getElementById("campojuego").style.display = "none";
-
-        document.getElementById("resultadoNombre").textContent = `Nombre: ${user}`;
-        document.getElementById("resultadoMovimientos").textContent = `Movimientos: ${contMovimientos}`;
-
-        if (crono) {
-
-            document.getElementById("resultadoTiempo").textContent = `Tiempo: ${crono}`;
-        } else {
-        }
-    }
-
-    /**
-     * crear cartas
-     */
-
-    for (let i = 0; i < totalCartas; i++) {
-        const celda = document.createElement('div');
-        celda.className = 'celda carta';
-
-        const contenedor = document.createElement('div');
-        contenedor.className = 'contenedor-carta';
-
-        const trasera = document.createElement('img');
-        trasera.className = 'cara trasera';
-    /**
-     * config personalizada
-     */
-        if (nivel === "facil") trasera.src = "../img/cartaPorDetras.png";
-        else if (nivel === "medio") trasera.src = "../img/cartaPorDetrasVerde.png";
-        else if (nivel === "dificil") trasera.src = "../img/cartaPorDetrasAzul.png";
-        else trasera.src = "../img/cartaPorDetrasRosa.png";
-
-        const frente = document.createElement('img');
-        frente.className = 'cara frente';
-        if(tema === "Super Mario Bros"){
-            frente.src = `../img/temaMarioBros/${imagenes[i].nombre}`;
-        }
-        else if(tema === "Castlevania"){
-            frente.src = `../img/temaCastlevania/${imagenes[i].nombre}`;
-        }
-        else if(tema === "Metal Gear"){
-            frente.src = `../img/temaMetalGear/${imagenes[i].nombre}`;
-        }
-        
-
-        contenedor.appendChild(trasera);
-        contenedor.appendChild(frente);
-        celda.appendChild(contenedor);
-
-        celda.dataset.id = imagenes[i].id;
-
-        //modo flash
-        if (modo === "flash"){
-            celda.classList.add('volteada');   
-            setTimeout(() => {
-                celda.classList.remove('volteada');
-            }, 5000); 
-
-            celda.addEventListener('click', () =>{
-                celda.classList.remove('volteada');
-            });
-        }
-
-        /**
-         * evento de click de carta
-         */
-
-            else if (modo === "normal") {
-            celda.addEventListener('click', () => {
-                if (bloqueo || celda.classList.contains('volteada')) return;
-
-                celda.classList.add('volteada');
-
-                if (!primeraCarta) {
-                    primeraCarta = celda;
-                } else {
-                    segundaCarta = celda;
-                    bloqueo = true;
-
-                    const id1 = primeraCarta.dataset.id;
-                    const id2 = segundaCarta.dataset.id;
-
-                    contMovimientos++;
-                    movimientos.textContent = contMovimientos;
-
-                    /**
-                     * comparar cartas
-                     */
-                    if (id1 === id2) {
-                        primeraCarta = null;
-                        segundaCarta = null;
-                        bloqueo = false;
-
-                        
-                        contAciertos++;
-                        aciertos.textContent = contAciertos;
-
-                        if (contAciertos === totalCartas / 2) {
-                            fin();
-                            const partida = {
-                                nombre: nombreJugador,
-                                dificultad: nivel,
-                                tema: temaSeleccionado,
-                                modo: modoJuego,
-                                duracion: tiempoEnSegundos,
-                                movimientos: totalIntentos,
-                                aciertos: totalAciertos,
-                                fecha: new Date().toLocaleString(),
-                            };
-                            const historial = JSON.parse(localStorage.getItem("historial")) || [];
-                            historial.push(partida);
-                            localStorage.setItem("historial", JSON.stringify(historial));
-                        }
-
-                    } else {
-                        setTimeout(() => {
-                            primeraCarta.classList.remove('volteada');
-                            segundaCarta.classList.remove('volteada');
-                            primeraCarta = null;
-                            segundaCarta = null;
-                            bloqueo = false;
-                        }, 1000);
-                    }
-                }
-            });
-        }
-        campojuego.appendChild(celda);
-    }
-/**
- * crono
- */
-    
-
-    function iniciarCronometro() {
-        if (!intervalo) {
-            intervalo = setInterval(() => {
-                tiempoTranscurrido++;
-                const minutos = Math.floor(tiempoTranscurrido / 60).toString().padStart(2, '0');
-                const segundos = (tiempoTranscurrido % 60).toString().padStart(2, '0');
-                temp.textContent = `Tiempo: ${minutos}:${segundos}`;
-            }, 1000);
-        }
-    }
-
-    /**
-     * iniciar cronometro al hacer click en la primera carta (no tocar cago en die)
-     */
-    if (temporizador !== "desactivado") {
-        campojuego.addEventListener('click', () => {
-            if (!intervalo) iniciarCronometro();
-        });
-    }
-
-    /**
-     * detener el crono al terminar
-     */
-    const totalParejas = totalCartas / 2;
-    const observer = new MutationObserver(() => {
-        if (contAciertos === totalParejas) {
-            clearInterval(intervalo);
-        const minutos = Math.floor(tiempoTranscurrido / 60).toString().padStart(2, '0');
-        const segundos = (tiempoTranscurrido % 60).toString().padStart(2, '0');
-        const partida = {
-            nombre: localStorage.getItem("nombre"),
-            dificultad: localStorage.getItem("nivel"),
-            tema: localStorage.getItem("tema"),
-            modo: localStorage.getItem("modo"),
-            duracion: temporizador !== "desactivado" ? `${minutos}:${segundos}` : "Desactivado",
-            movimientos: contMovimientos,
-            aciertos: contAciertos,
-            fecha: new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" })
-        };
-        
-            /**
-             * refrescar historial
-             */
-            const historial = JSON.parse(localStorage.getItem("historial")) || [];
-            historial.push(partida);
-            localStorage.setItem("historial", JSON.stringify(historial));
-        }
-        
-    });
-
-    observer.observe(aciertos, { childList: true });
-
-});
+     const nivel = localStorage.getItem("nivel");
+     const temporizador = localStorage.getItem("temporizador");
+     const nombre = localStorage.getItem("nombre");
+     const modo = localStorage.getItem("modo");
+     const tema = localStorage.getItem("tema");
+     const filas = localStorage.getItem("filas");
+     const columnas = localStorage.getItem("columnas");
+     const nombreScreen = document.getElementById("nombreScreen");
+     const modoScreen = document.getElementById("modoScreen");
+     const nivelScreen = document.getElementById("nivelScreen");
+     const tematicaScreen = document.getElementById("tematicaScreen");
+     const fondoImg = document.getElementsByClassName("fondo1")[0];
+     const temp = document.getElementById("tiempo");
+     const campojuego = document.getElementById("campojuego");
+     let tiempoTranscurrido = 0;
+     let intervalo;
+     /**
+      * configuración personalizada
+      */
+ 
+     if (temporizador === "desactivado") {
+         temp.textContent = "TEMPORIZADOR DESACTIVADO";
+     }
+ 
+     if (fondoImg) {
+         if (nivel == "facil") fondoImg.src = "../img/fondorojo.png";
+         else if (nivel == "medio") fondoImg.src = "../img/fondoverde.png";
+         else if (nivel == "dificil") fondoImg.src = "../img/fondoazul.png";
+         else if (nivel == "personalizado") fondoImg.src = "../img/fondorosa.png";
+     }
+ 
+     nombreScreen.textContent = "Nombre: " + nombre;
+     modoScreen.textContent = "Modo: " + modo;
+     nivelScreen.textContent = "Nivel: " + nivel;
+     tematicaScreen.textContent = "Tema: " + tema;
+ 
+     const grid = document.getElementById('campojuego');
+ 
+     let fila, colum;
+     if (nivel === "facil") {
+         fila = 4; colum = 4;
+     } else if (nivel === "medio") {
+         fila = 5; colum = 4;
+     } else if (nivel === "dificil") {
+         fila = 6; colum = 6;
+     } else if (nivel === "personalizado") {
+         fila = parseInt(filas); colum = parseInt(columnas);
+     } else {
+         console.warn("Nivel no reconocido:", nivel);
+         return;
+     }
+ 
+     grid.style.gridTemplateColumns = `repeat(${colum}, 1fr)`;
+     grid.style.gridTemplateRows = `repeat(${fila}, 1fr)`;
+ 
+     const totalCartas = fila * colum;
+     /**
+      * validación numero de cartas
+      */
+     if (totalCartas % 2 !== 0) {
+         alert("El número total de cartas debe ser par.");
+         return;
+     }
+ 
+     /**
+      * array para las imagenes
+      */
+     const imagenes = [];
+     for (let i = 1; i <= totalCartas / 2; i++) {
+         imagenes.push({nombre: `carta${i}.png`, id: `carta${i}`});
+         imagenes.push({nombre: `carta${i} - copia.png`, id: `carta${i}`});
+     }
+ 
+     /**
+      * barajar cartas
+      */
+     imagenes.sort(() => Math.random() - 0.5);
+ 
+     let primeraCarta = null;
+     let segundaCarta = null;
+     let bloqueo = false;
+     
+     let contMovimientos = 0;
+     let contAciertos = 0;
+ 
+     const movimientos = document.getElementById('movimientos');
+     const aciertos = document.getElementById('aciertos');  
+ 
+     /**
+      * funcion pantalla de fin de partida
+      */
+     function fin() {
+         const user = localStorage.getItem("nombre") || "Usuario:";
+         const crono = localStorage.getItem("temporizador") !== "desactivado";
+ 
+         document.getElementById("pantallaFinal").style.display = "block";
+ 
+         document.getElementById("campojuego").style.display = "none";
+ 
+         document.getElementById("resultadoNombre").textContent = `Nombre: ${user}`;
+         document.getElementById("resultadoMovimientos").textContent = `Movimientos: ${contMovimientos}`;
+ 
+         if (crono) {
+ 
+             document.getElementById("resultadoTiempo").textContent = `Tiempo: ${crono}`;
+         } else {
+         }
+     }
+ 
+     /**
+      * crear cartas
+      */
+ 
+     for (let i = 0; i < totalCartas; i++) {
+         const celda = document.createElement('div');
+         celda.className = 'celda carta';
+ 
+         const contenedor = document.createElement('div');
+         contenedor.className = 'contenedor-carta';
+ 
+         const trasera = document.createElement('img');
+         trasera.className = 'cara trasera';
+     /**
+      * config personalizada
+      */
+         if (nivel === "facil") trasera.src = "../img/cartaPorDetras.png";
+         else if (nivel === "medio") trasera.src = "../img/cartaPorDetrasVerde.png";
+         else if (nivel === "dificil") trasera.src = "../img/cartaPorDetrasAzul.png";
+         else trasera.src = "../img/cartaPorDetrasRosa.png";
+ 
+         const frente = document.createElement('img');
+         frente.className = 'cara frente';
+         if(tema === "Super Mario Bros"){
+             frente.src = `../img/temaMarioBros/${imagenes[i].nombre}`;
+         }
+         else if(tema === "Castlevania"){
+             frente.src = `../img/temaCastlevania/${imagenes[i].nombre}`;
+         }
+         else if(tema === "Metal Gear"){
+             frente.src = `../img/temaMetalGear/${imagenes[i].nombre}`;
+         }
+         
+ 
+         contenedor.appendChild(trasera);
+         contenedor.appendChild(frente);
+         celda.appendChild(contenedor);
+ 
+         celda.dataset.id = imagenes[i].id;
+ 
+         //modo flash
+         if (modo === "flash"){
+             celda.classList.add('volteada');   
+             setTimeout(() => {
+                 celda.classList.remove('volteada');
+             }, 5000); 
+ 
+             celda.addEventListener('click', () =>{
+                 celda.classList.remove('volteada');
+             });
+         }
+ 
+         /**
+          * evento de click de carta
+          */
+ 
+             else if (modo === "normal") {
+             celda.addEventListener('click', () => {
+                 if (bloqueo || celda.classList.contains('volteada')) return;
+ 
+                 celda.classList.add('volteada');
+ 
+                 if (!primeraCarta) {
+                     primeraCarta = celda;
+                 } else {
+                     segundaCarta = celda;
+                     bloqueo = true;
+ 
+                     const id1 = primeraCarta.dataset.id;
+                     const id2 = segundaCarta.dataset.id;
+ 
+                     contMovimientos++;
+                     movimientos.textContent = contMovimientos;
+ 
+                     /**
+                      * comparar cartas
+                      */
+                     if (id1 === id2) {
+                         primeraCarta = null;
+                         segundaCarta = null;
+                         bloqueo = false;
+ 
+                         
+                         contAciertos++;
+                         aciertos.textContent = contAciertos;
+ 
+                         if (contAciertos === totalCartas / 2) {
+                             fin();
+                             const partida = {
+                                 nombre: nombreJugador,
+                                 dificultad: nivel,
+                                 tema: temaSeleccionado,
+                                 modo: modoJuego,
+                                 duracion: tiempoEnSegundos,
+                                 movimientos: totalIntentos,
+                                 aciertos: totalAciertos,
+                                 fecha: new Date().toLocaleString(),
+                             };
+                             const historial = JSON.parse(localStorage.getItem("historial")) || [];
+                             historial.push(partida);
+                             localStorage.setItem("historial", JSON.stringify(historial));
+                         }
+ 
+                     } else {
+                         setTimeout(() => {
+                             primeraCarta.classList.remove('volteada');
+                             segundaCarta.classList.remove('volteada');
+                             primeraCarta = null;
+                             segundaCarta = null;
+                             bloqueo = false;
+                         }, 1000);
+                     }
+                 }
+             });
+         }
+         campojuego.appendChild(celda);
+     }
+ /**
+  * crono
+  */
+     
+ 
+     function iniciarCronometro() {
+         if (!intervalo) {
+             intervalo = setInterval(() => {
+                 tiempoTranscurrido++;
+                 const minutos = Math.floor(tiempoTranscurrido / 60).toString().padStart(2, '0');
+                 const segundos = (tiempoTranscurrido % 60).toString().padStart(2, '0');
+                 temp.textContent = `Tiempo: ${minutos}:${segundos}`;
+             }, 1000);
+         }
+     }
+ 
+     /**
+      * iniciar cronometro al hacer click en la primera carta (no tocar cago en die)
+      */
+     if (temporizador !== "desactivado") {
+         campojuego.addEventListener('click', () => {
+             if (!intervalo) iniciarCronometro();
+         });
+     }
+ 
+     /**
+      * detener el crono al terminar
+      */
+     const totalParejas = totalCartas / 2;
+     const observer = new MutationObserver(() => {
+         if (contAciertos === totalParejas) {
+             clearInterval(intervalo);
+         const minutos = Math.floor(tiempoTranscurrido / 60).toString().padStart(2, '0');
+         const segundos = (tiempoTranscurrido % 60).toString().padStart(2, '0');
+         const partida = {
+             nombre: localStorage.getItem("nombre"),
+             dificultad: localStorage.getItem("nivel"),
+             tema: localStorage.getItem("tema"),
+             modo: localStorage.getItem("modo"),
+             duracion: temporizador !== "desactivado" ? `${minutos}:${segundos}` : "Desactivado",
+             movimientos: contMovimientos,
+             aciertos: contAciertos,
+             fecha: new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" })
+         };
+         
+             /**
+              * refrescar historial
+              */
+             const historial = JSON.parse(localStorage.getItem("historial")) || [];
+             historial.push(partida);
+             localStorage.setItem("historial", JSON.stringify(historial));
+         }
+         
+     });
+ 
+     observer.observe(aciertos, { childList: true });
+ 
+ });
