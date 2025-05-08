@@ -1,6 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("empezar");
 
+  const audio = document.getElementById('bg-audio');
+
+  // Solo una vez: reproduce el audio después de la primera interacción
+  const activarAudio = () => {
+      audio.play().then(() => {
+          console.log("Audio reproduciéndose.");
+      }).catch(error => {
+          console.warn("El navegador bloqueó la reproducción automática:", error);
+      });
+
+      // Elimina el evento para que no se repita
+      document.removeEventListener('click', activarAudio);
+  };
+  document.addEventListener('click', activarAudio);
+
   /**
    * reemplazo de los selects por personalización
    */
@@ -115,3 +130,4 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "html/tablero.html";
   });
 });
+
