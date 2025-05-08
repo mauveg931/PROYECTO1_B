@@ -377,16 +377,17 @@ campojuego.addEventListener("click", () => {
      * funcion pantalla de fin de partida
      */
     function fin() {
+        const puntosFinal = calcularPuntos(contAciertos, contMovimientos, tiempoTranscurrido);
         const user = localStorage.getItem("nombre") || "Usuario";
         const crono = localStorage.getItem("temporizador") !== "desactivado";
         const puntos = document.getElementById('puntos');
         document.getElementById("pantallaFinal").style.display = "block";
         document.getElementById("campojuego").style.display = "none";
     
-        calcularPuntos(); 
+        puntos.textContent = puntosFinal;
     
         document.getElementById("resultadoNombre").textContent = `Jugador: ${user}`;
-        document.getElementById("resultadoPuntos").textContent = `Puntos: ${puntos.textContent}`;
+        document.getElementById("resultadoPuntos").textContent = `Puntos:  ${puntosFinal}`;
     
         if (crono) {
             document.getElementById("resultadoTiempo").textContent = `${temp.textContent}`;
