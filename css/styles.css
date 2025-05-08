@@ -193,17 +193,14 @@ select:hover{
   
 /*Tablero*/
 .pantallaFinal{
- 
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
   background-color: #54014d;
   color: white;
   font-family: "Tagesschrift", cursive;
   letter-spacing: 2px;
-
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);

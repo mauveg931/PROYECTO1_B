@@ -394,8 +394,23 @@ campojuego.addEventListener("click", () => {
                 document.getElementById("resultadoTiempo").textContent = `${temp.textContent}`;
             } else {
                 document.getElementById("resultadoTiempo").textContent = `Tiempo: Sin temporizador`;
+
             }
-        }, 750); // Retraso de 1 segundo
+            document.getElementById("compartirFacebook").addEventListener("click", function() {
+                const user = localStorage.getItem("nombre") || "Jugador";
+                const puntos = document.getElementById("resultadoPuntos").textContent;
+                const tiempo = document.getElementById("resultadoTiempo").textContent;
+                const texto = encodeURIComponent(`¡He conseguido ${puntos} en ${tiempo} en Memorium!`);
+            
+                const url = encodeURIComponent(window.location.href); 
+                const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${texto}`;
+            
+                window.open(facebookUrl, "_blank");
+            });
+            
+            
+            
+        }, 750); 
     }
     observer.observe(aciertos, { childList: true });
  
