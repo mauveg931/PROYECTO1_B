@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
      /**
     * calcular puntuaciones
     */
-     const movimientos = document.getElementById('movimientos');
-     const aciertos = document.getElementById('aciertos'); 
+
+     
  
      function calcularPuntos(aciertos, movimientos, tiempoTranscurrido) {
      const puntos = (aciertos * 50) - (movimientos * 2) - (tiempoTranscurrido*0.5);
@@ -28,19 +28,20 @@ document.addEventListener("DOMContentLoaded", () => {
             const fila = document.createElement("tr");
             const aciertos = parseInt(partida.aciertos);
             const movimientos = parseInt(partida.movimientos);
-            const duracion = parseFloat(partida.duracion);
-
-    if (!isNaN(aciertos) && !isNaN(movimientos) && !isNaN(duracion)) {
-        partida.puntos = calcularPuntos(aciertos, movimientos, duracion);
-    } else {
-        partida.puntos = 0;
-    }
+            const duracion = partida.duracion === "Desactivado" ? 0 : parseFloat(partida.duracion);
+        
+            if (!isNaN(aciertos) && !isNaN(movimientos) && !isNaN(duracion)) {
+                partida.puntos = calcularPuntos(aciertos, movimientos, duracion);
+            } else {
+                partida.puntos = 0;
+            }
+        
             ["nombre", "dificultad", "tema", "modo", "duracion", "puntos", "fecha"].forEach((key) => {
                 const celda = document.createElement("td");
                 celda.textContent = partida[key];
                 fila.appendChild(celda);
             });
-
+        
             cuerpo.appendChild(fila);
         });
         
