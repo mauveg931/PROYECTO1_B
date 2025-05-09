@@ -423,16 +423,13 @@ campojuego.addEventListener("click", () => {
             /**
              * compartir en facebook
              */
-            function compartir() {
-            const texto = encodeURIComponent(`¡He conseguido ${puntosFinal} puntos en Memorium!🕯️`);
-            const url = encodeURIComponent("https://mauveg931.github.io/PROYECTO1_B/");
-            const facebookURL = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${texto}`;
+            function compartirEnFacebook() {
+            const url = encodeURIComponent("https://mauveg931.github.io/PROYECTO1_B/"); 
+            const texto = encodeURIComponent("¡He conseguido 100 puntos en 2:15 minutos en este juego de memoria!");
 
-            window.open(facebookURL, "_blank");
+            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${texto}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
             }
-
-
-            
             /**
              * retraso para que se vea la ultima carta
              */
