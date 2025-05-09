@@ -179,21 +179,25 @@ campojuego.addEventListener("click", () => {
                  * bloqueo de click en misma carta
                  */
                 if (bloqueo || celda === primeraCarta || celda.classList.contains('volteada')) return;
-        
-                celda.classList.remove('volteada');
-        
+
+                celda.classList.add('highlight'); // Add highlight class
+
                 if (!primeraCarta) {
                     primeraCarta = celda;
                 } else {
                     segundaCarta = celda;
                     bloqueo = true;
-        
+
+                    // Remove highlight from both cards after the second selection
+                    primeraCarta.classList.remove('highlight');
+                    segundaCarta.classList.remove('highlight');
+
                     const id1 = primeraCarta.dataset.id;
                     const id2 = segundaCarta.dataset.id;
-        
+
                     contMovimientos++;
                     movimientos.textContent = contMovimientos;
-        
+
                     if (id1 === id2) {
                        /**
                         * dejar voltadas si aciertas
