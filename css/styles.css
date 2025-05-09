@@ -493,6 +493,8 @@ html, body {
   border: 3px solid white;
   box-shadow: 0 0 10px white;
   animation: palpitate 1.5s infinite;
+  border-radius: 10px;
+  width: auto;
 }
 
 @keyframes palpitate {
