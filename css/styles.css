@@ -412,6 +412,15 @@ html, body {
   font-weight: bold; 
   z-index: 10; 
 }
+.cruz-acierto {
+  position: absolute;  
+  top: 50%;  
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 2rem; 
+  font-weight: bold; 
+  z-index: 10; 
+}
 
 /*Historial*/
 
@@ -451,4 +460,21 @@ html, body {
   font-family: "Tagesschrift", cursive;
   letter-spacing: 2px;
   color: white
+}
+
+.highlight {
+  border: 3px solid white;
+  box-shadow: 0 0 10px white;
+  animation: palpitate 1.5s infinite;
+}
+
+@keyframes palpitate {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px white;
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px white;
+  }
 }
