@@ -35,14 +35,24 @@
   <div class="campojuego" id="campojuego">
   </div>
 
-  <footer class="pie1">
-    <div class="volver">
+  <footer class="piep">
+    <div class="marco">
+      <div id="tiempo" class="tiempo">
+        <p></p>
+        <span></span>
+      </div>
+      <div class="volver">
         <a href="../index.html">
-            <button class="boton">Volver</button>
-        </a>
+            <button class="boton" id="insertar">volver</button>
+            </a>
+      </div>
+      <div class="puntos">
+        <p>Movimientos: <span id="movimientos">0</span></p>
+        <p>Aciertos: <span id="aciertos">0</span></p>
+        <p>Puntos: <span id="puntos">0</span></p>
+      </div>
     </div>
-    <p>&copy; Hugo Vila, Mauro Vega, Zeltia Ferreiro. 2025</p>
-</footer>
+  </footer>
   <script defer src="../scripts/scripts-tablero.js"></script>
 </body>
 </html>

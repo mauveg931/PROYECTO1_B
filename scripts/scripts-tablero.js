@@ -262,7 +262,7 @@ campojuego.addEventListener("click", () => {
         function mostrarCruzVisual(carta) {
             const cruz = document.createElement('div');
             cruz.className = 'cruz-error';  
-            cruz.textContent = '❌';  
+            cruz.textContent = 'X';  
             carta.appendChild(cruz);  
 
             setTimeout(() => {
