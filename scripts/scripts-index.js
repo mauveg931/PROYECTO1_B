@@ -1,6 +1,40 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("empezar");
 
+  const audio = document.getElementById('bg-audio');
+
+  /**
+   * reproducir audio en index al hacer un click
+   */
+  const activarAudio = () => {
+    audio.volume = 0.5;
+      audio.play().then(() => {
+          console.log("Audio reproduciéndose.");
+      }).catch(error => {
+          console.warn("El navegador bloqueó la reproducción automática:", error);
+      });
+
+      /**
+       * eliminar evento para que no se reinicie a cada click
+       */
+      document.removeEventListener('click', activarAudio);
+  };
+  document.addEventListener('click', activarAudio);
+
+
+  // Juego Snake
+ 
+
+  function redireccionar() {
+    const nombre = document.getElementById("usuario").value.trim().toLowerCase();
+
+    if (nombre == "snake") {
+        window.location.href = "html/snake.html"; // Redirige al juego de Snake
+    } else {
+        window.location.href = "html/tablero.html"; // Redirige al juego normal
+    }
+}
+
   /**
    * reemplazo de los selects por personalización
    */
@@ -55,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /**
-   * botón
+   * botón iniciar partida
    */
   btn.addEventListener("click", () => {
     const nivel = document.getElementById("nivel").value;
@@ -112,6 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("columnas", columnas);
     }
 
-    window.location.href = "html/tablero.html";
+
+  redireccionar();
   });
+
 });
+

@@ -89,3 +89,24 @@ Lógica para puntos, uso de los datos recogidos.
 Hacer varias páginas
 **IDEAS DE MEJORA**
 Optimizar el código, funcionalidad de la pantalla final.
+
+## SESION 5 (07/05/2025)
+**RESUMEN**
+Creación de nuevos diseños de cartas, modo flash funcional y pantalla de fin de partida. Se han agregado diferentes efectos de sonido.
+**DIFICULTADES**
+Funcionamiento correcto de la pantalla de fin de partida. Logica de volteo en el modo flash.
+**SOLUCIONES**
+Estructurar el código correctamente
+**FUENTES CONSULTADAS**
+**DECISIONES TÉCNICAS**
+Nuevos diseños de las cartas
+**IDEAS DE MEJORA**
+Optimizar el código, agregar easter egg.
+
+## SESION 6 (09/05/2025)
+**RESUMEN**
+Arreglos en la estructura del código, solución de bugs, añadir Easter Egg, añadir compartir en facebook.
+**Easter Egg**
+Al ingresar el nombre de usuario "Snake" lleva al juego del snake.
+
+

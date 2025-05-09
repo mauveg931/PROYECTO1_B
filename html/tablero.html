@@ -11,12 +11,15 @@
 </head>
 <body class="tablero1">
   
-  <div class="pantallaFinal" style="display: none; text-align: center;">
-    <h2>¡Has ganado!</h2>
+  <div id="pantallaFinal" class="pantallaFinal" style="display: none; text-align: center;">
+    <h2>¡Partida finalizada!</h2>
     <p id="resultadoNombre"></p>
-    <p id="resultadoIntentos"></p>
+    <p id="resultadoPuntos"></p>
     <p id="resultadoTiempo"></p>
-    <button onclick="location.reload()">Volver a jugar</button>
+    <button class="boton" id="insertar" onclick="location.reload()">Volver a jugar</button>
+    <button class="boton" ><a id="compartir" style="text-decoration: none;" href="https://www.facebook.com/sharer/sharer.php?u=https://mauveg931.github.io/PROYECTO1_B/
+">Compartir</a></button>
+
 </div>
 
 
@@ -46,9 +49,10 @@
       <div class="puntos">
         <p>Movimientos: <span id="movimientos">0</span></p>
         <p>Aciertos: <span id="aciertos">0</span></p>
+        <p>Puntos: <span id="puntos">0</span></p>
       </div>
     </div>
   </footer>
-  <script async src="../scripts/scripts-tablero.js"></script>
+  <script defer src="../scripts/scripts-tablero.js"></script>
 </body>
 </html>

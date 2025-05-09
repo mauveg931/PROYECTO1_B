@@ -89,28 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const movimientos = document.getElementById('movimientos');
     const aciertos = document.getElementById('aciertos');  
-
-    /**
-     * funcion pantalla de fin de partida
-     */
-    function fin() {
-        const user = localStorage.getItem("nombre") || "Usuario:";
-        const crono = localStorage.getItem("temporizador") !== "desactivado";
-
-        document.getElementById("pantallaFinal").style.display = "block";
-
-        document.getElementById("campojuego").style.display = "none";
-
-        document.getElementById("resultadoNombre").textContent = `Nombre: ${user}`;
-        document.getElementById("resultadoMovimientos").textContent = `Movimientos: ${contMovimientos}`;
-
-        if (crono) {
-
-            document.getElementById("resultadoTiempo").textContent = `Tiempo: ${crono}`;
-        } else {
-        }
-    }
-
+    const puntos= document.getElementById('puntos');
+    
     /**
      * crear cartas
      */
@@ -151,124 +131,303 @@ document.addEventListener("DOMContentLoaded", () => {
 
         celda.dataset.id = imagenes[i].id;
 
-        /**
-         * evento de click de carta
-         */
-        celda.addEventListener('click', () => {
-            if (bloqueo || celda.classList.contains('volteada')) return;
+        
+/**
+ * objeto audio
+ */
+let musicaFondo = new Audio();
 
-            celda.classList.add('volteada');
+/**
+ * pista segun tema
+ */
+if (tema === "Super Mario Bros") {
+    musicaFondo.src = "../audio/Super Mario 64 Soundtrack - Dire, Dire Docks.mp3";
+} else if (tema === "Castlevania") {
+    musicaFondo.src = "../audio/Marble Gallery - Castlevania Symphony of the Night OST.mp3";
+} else if (tema === "Metal Gear") {
+    musicaFondo.src = "../audio/01 - Metal Gear Solid Main Theme.mp3";
+}
 
-            if (!primeraCarta) {
-                primeraCarta = celda;
-            } else {
-                segundaCarta = celda;
-                bloqueo = true;
+/**config audio */
+musicaFondo.loop = true;
+musicaFondo.volume = 0.01;
 
-                const id1 = primeraCarta.dataset.id;
-                const id2 = segundaCarta.dataset.id;
-
-                contMovimientos++;
-                movimientos.textContent = contMovimientos;
-
+/**
+ * inicio de audio despues del click
+ */
+campojuego.addEventListener("click", () => {
+    if (musicaFondo.paused) {
+        musicaFondo.play().catch(e => console.warn("Autoplay bloqueado:", e));
+    }
+}, { once: true }); // solo una vez
+ 
+         /**
+          * MODO FLASH
+          */
+         if (modo === "flash") {
+           /**
+            * mostrar cartas volteadas
+            */
+            celda.classList.add('volteada');   
+        
+            setTimeout(() => {
+                celda.classList.remove('volteada');
+            }, 5000);
+        
+            celda.addEventListener('click', () => {
                 /**
-                 * comparar cartas
+                 * bloqueo de click en misma carta
                  */
-                if (id1 === id2) {
-                    primeraCarta = null;
-                    segundaCarta = null;
-                    bloqueo = false;
+                if (bloqueo || celda === primeraCarta || celda.classList.contains('volteada')) return;
 
-                    
-                    contAciertos++;
-                    aciertos.textContent = contAciertos;
+                celda.classList.add('highlight'); // Add highlight class
 
-                    if (contAciertos === totalCartas / 2) {
-                        fin();
-                        const partida = {
-                            nombre: nombreJugador,
-                            dificultad: nivel,
-                            tema: temaSeleccionado,
-                            modo: modoJuego,
-                            duracion: tiempoEnSegundos,
-                            movimientos: totalIntentos,
-                            aciertos: totalAciertos,
-                            fecha: new Date().toLocaleString(),
-                        };
-                        const historial = JSON.parse(localStorage.getItem("historial")) || [];
-                        historial.push(partida);
-                        localStorage.setItem("historial", JSON.stringify(historial));
-                    }
-
+                if (!primeraCarta) {
+                    primeraCarta = celda;
                 } else {
-                    setTimeout(() => {
-                        primeraCarta.classList.remove('volteada');
-                        segundaCarta.classList.remove('volteada');
+                    segundaCarta = celda;
+                    bloqueo = true;
+
+                    // Remove highlight from both cards after the second selection
+                    primeraCarta.classList.remove('highlight');
+                    segundaCarta.classList.remove('highlight');
+
+                    const id1 = primeraCarta.dataset.id;
+                    const id2 = segundaCarta.dataset.id;
+
+                    contMovimientos++;
+                    movimientos.textContent = contMovimientos;
+
+                    if (id1 === id2) {
+                       /**
+                        * dejar voltadas si aciertas
+                        */
+                        primeraCarta.classList.add('volteada');
+                        segundaCarta.classList.add('volteada');
+                        
                         primeraCarta = null;
                         segundaCarta = null;
                         bloqueo = false;
-                    }, 1000);
+        
+                        contAciertos++;
+                        aciertos.textContent = contAciertos;
+                        /**
+                         * fin partida
+                         */
+                        if (contAciertos === totalCartas / 2) {
+                            fin();
+                            const partida = {
+                                nombre: nombreJugador,
+                                dificultad: nivel,
+                                tema: temaSeleccionado,
+                                modo: modoJuego,
+                                duracion: tiempoEnSegundos,
+                                movimientos: totalIntentos,
+                                aciertos: totalAciertos,
+                                fecha: new Date().toLocaleString(),
+                            };
+                            const historial = JSON.parse(localStorage.getItem("historial")) || [];
+                            historial.push(partida);
+                            localStorage.setItem("historial", JSON.stringify(historial));
+                        }
+                    } else {
+                        /**
+                         * mostrar error si no aciertas
+                         */
+                        mostrarCruzVisual(primeraCarta);
+                        mostrarCruzVisual(segundaCarta);
+        
+                        setTimeout(() => {
+                            primeraCarta.classList.remove('volteada');
+                            segundaCarta.classList.remove('volteada');
+                            resetCartas();
+                        }, 1000);
+                    }
                 }
-            }
-        });
+            });
+        }
+        
+        /**
+         * reset de cartas despues de un intento
+         */
+        function resetCartas() {
+            primeraCarta = null;
+            segundaCarta = null;
+            bloqueo = false;
+        }
+        
+        /**
+         *  Función para mostrar la cruz visual en las cartas incorrectas en el modo flash
+         */ 
+        function mostrarCruzVisual(carta) {
+            const cruz = document.createElement('div');
+            cruz.className = 'cruz-error';  
+            cruz.textContent = '❌';  
+            carta.appendChild(cruz);  
 
-        campojuego.appendChild(celda);
+            setTimeout(() => {
+                carta.removeChild(cruz);  
+            }, 800);  
+        }
+
+        /**
+         * MODO NORMAL
+         */
+             if (modo === "normal") {
+             celda.addEventListener('click', () => {
+                 if (bloqueo || celda.classList.contains('volteada')) return;
+ 
+                 celda.classList.add('volteada');
+ 
+                 if (!primeraCarta) {
+                     primeraCarta = celda;
+                 } else {
+                     segundaCarta = celda;
+                     bloqueo = true;
+ 
+                     const id1 = primeraCarta.dataset.id;
+                     const id2 = segundaCarta.dataset.id;
+ 
+                     contMovimientos++;
+                     movimientos.textContent = contMovimientos;
+ 
+                     /**
+                      * comparar cartas
+                      */
+                     if (id1 === id2) {
+                         primeraCarta = null;
+                         segundaCarta = null;
+                         bloqueo = false;
+ 
+                         
+                         contAciertos++;
+                         aciertos.textContent = contAciertos;
+                        /**
+                         * final de partida
+                         */
+                         if (contAciertos === totalCartas / 2) {
+                             fin();
+                             const partida = {
+                                 nombre: nombreJugador,
+                                 dificultad: nivel,
+                                 tema: temaSeleccionado,
+                                 modo: modoJuego,
+                                 duracion: tiempoEnSegundos,
+                                 movimientos: totalIntentos,
+                                 aciertos: totalAciertos,
+                                 fecha: new Date().toLocaleString(),
+                             };
+                             const historial = JSON.parse(localStorage.getItem("historial")) || [];
+                             historial.push(partida);
+                             localStorage.setItem("historial", JSON.stringify(historial));
+                         }
+ 
+                     } else {
+                         setTimeout(() => {
+                             primeraCarta.classList.remove('volteada');
+                             segundaCarta.classList.remove('volteada');
+                             primeraCarta = null;
+                             segundaCarta = null;
+                             bloqueo = false;
+                         }, 1000);
+                     }
+                 }
+             });
+         }
+         campojuego.appendChild(celda);
+     }
+ /**
+  * iniciar crono
+  */
+     function iniciarCronometro() {
+         if (!intervalo) {
+             intervalo = setInterval(() => {
+                 tiempoTranscurrido++;
+                 const minutos = Math.floor(tiempoTranscurrido / 60).toString().padStart(2, '0');
+                 const segundos = (tiempoTranscurrido % 60).toString().padStart(2, '0');
+                 temp.textContent = `Tiempo: ${minutos}:${segundos}`;
+             }, 1000);
+         }
+     }
+ 
+     /**
+      * iniciar cronometro al hacer click en la primera carta (no tocar cago en die)
+      */
+     if (temporizador !== "desactivado") {
+         campojuego.addEventListener('click', () => {
+             if (!intervalo) iniciarCronometro();
+         });
+     }
+ 
+     /**
+      * detener el crono al terminar
+      */
+     const totalParejas = totalCartas / 2;
+     const observer = new MutationObserver(() => {
+         if (contAciertos === totalParejas) {
+             clearInterval(intervalo);
+         const minutos = Math.floor(tiempoTranscurrido / 60).toString().padStart(2, '0');
+         const segundos = (tiempoTranscurrido % 60).toString().padStart(2, '0');
+         /**
+          * datos para ranking e historial
+          */
+         const partida = {
+             nombre: localStorage.getItem("nombre"),
+             dificultad: localStorage.getItem("nivel"),
+             tema: localStorage.getItem("tema"),
+             modo: localStorage.getItem("modo"),
+             duracion: temporizador !== "desactivado" ? `${minutos}:${segundos}` : "Desactivado",
+             movimientos: contMovimientos,
+             aciertos: contAciertos,
+             fecha: new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" })
+         };
+         
+             /**
+              * refrescar historial
+              */
+             const historial = JSON.parse(localStorage.getItem("historial")) || [];
+             historial.push(partida);
+             localStorage.setItem("historial", JSON.stringify(historial));
+         }
+         
+     });
+  /**
+    * calcular puntuaciones
+    */
+
+  function calcularPuntos(aciertos, movimientos, tiempoTranscurrido) {
+    const puntos = (aciertos * 50) - (movimientos * 2) - (tiempoTranscurrido*0.5);
+    return Math.max(0, Math.round(puntos));
+
     }
-/**
- * crono
- */
     
-
-    function iniciarCronometro() {
-        if (!intervalo) {
-            intervalo = setInterval(() => {
-                tiempoTranscurrido++;
-                const minutos = Math.floor(tiempoTranscurrido / 60).toString().padStart(2, '0');
-                const segundos = (tiempoTranscurrido % 60).toString().padStart(2, '0');
-                temp.textContent = `Tiempo: ${minutos}:${segundos}`;
-            }, 1000);
-        }
-    }
-
     /**
-     * iniciar cronometro al hacer click en la primera carta (no tocar cago en die)
+     * funcion pantalla de fin de partida
      */
-    if (temporizador !== "desactivado") {
-        campojuego.addEventListener('click', () => {
-            if (!intervalo) iniciarCronometro();
-        });
+    function fin() {
+        setTimeout(() => {
+            const puntosFinal = calcularPuntos(contAciertos, contMovimientos, tiempoTranscurrido);
+            const user = localStorage.getItem("nombre") || "Usuario";
+            const crono = localStorage.getItem("temporizador") !== "desactivado";
+            const puntos = document.getElementById('puntos');
+            document.getElementById("pantallaFinal").style.display = "block";
+            document.getElementById("campojuego").style.display = "none";
+        
+            puntos.textContent = puntosFinal;
+        
+            document.getElementById("resultadoNombre").textContent = `Jugador: ${user}`;
+            document.getElementById("resultadoPuntos").textContent = `Puntos:  ${puntosFinal}`;
+        
+            if (crono) {
+                document.getElementById("resultadoTiempo").textContent = `${temp.textContent}`;
+            } else {
+                document.getElementById("resultadoTiempo").textContent = `Tiempo: Sin temporizador`;
+
+            }
+            
+            
+        }, 750); 
     }
-
-    /**
-     * detener el crono al terminar
-     */
-    const totalParejas = totalCartas / 2;
-    const observer = new MutationObserver(() => {
-        if (contAciertos === totalParejas) {
-            clearInterval(intervalo);
-        const minutos = Math.floor(tiempoTranscurrido / 60).toString().padStart(2, '0');
-        const segundos = (tiempoTranscurrido % 60).toString().padStart(2, '0');
-        const partida = {
-            nombre: localStorage.getItem("nombre"),
-            dificultad: localStorage.getItem("nivel"),
-            tema: localStorage.getItem("tema"),
-            modo: localStorage.getItem("modo"),
-            duracion: `${minutos}:${segundos}`, 
-            movimientos: contMovimientos,
-            aciertos: contAciertos,
-            fecha: new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" })
-        };
-        
-            /**
-             * refrescar historial
-             */
-            const historial = JSON.parse(localStorage.getItem("historial")) || [];
-            historial.push(partida);
-            localStorage.setItem("historial", JSON.stringify(historial));
-        }
-        
-    });
-
     observer.observe(aciertos, { childList: true });
-
+ 
 });
