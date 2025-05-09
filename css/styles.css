@@ -1,5 +1,29 @@
 /*Index*/
 
+#compartir {
+    text-decoration: none; 
+    font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
+  color: white;
+}  
+#compartir:hover {
+   font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
+  color: white;
+}
+
+#compartir:visited {
+    font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
+  color: white;
+}
+
+#compartir:focus {
+    font-family: "Tagesschrift", cursive;
+  letter-spacing: 2px;
+  color: white;
+}
+
 input[type="text"],
 select {
   width: 90%;
