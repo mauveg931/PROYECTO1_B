@@ -21,6 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   document.addEventListener('click', activarAudio);
 
+
+  // Juego Snake
+ 
+
+  function redireccionar() {
+    const nombre = document.getElementById("usuario").value.trim().toLowerCase();
+
+    if (nombre == "snake") {
+        window.location.href = "html/snake.html"; // Redirige al juego de Snake
+    } else {
+        window.location.href = "html/tablero.html"; // Redirige al juego normal
+    }
+}
+
   /**
    * reemplazo de los selects por personalización
    */
@@ -132,7 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("columnas", columnas);
     }
 
-    window.location.href = "html/tablero.html";
+
+  redireccionar();
   });
+
 });
 
