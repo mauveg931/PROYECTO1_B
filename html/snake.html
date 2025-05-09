@@ -2,25 +2,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Tagesschrift:regular" rel="stylesheet" />
+  
   <title>Snake Game</title>
   <style>
     body {
       margin: 0;
-      background: #111;
+      background: linear-gradient(rgb(85, 0, 85), rgb(10, 0, 39) );
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100vh;
       color: #fff;
       font-family: 'Segoe UI', sans-serif;
-      flex-direction: column;
+      height: 100vh;
     }
 
     h1 {
-      margin-bottom: 20px;
+      margin: 20px 0 10px;
       font-size: 2rem;
-      color: rgb(230, 0, 255);
-      text-shadow: 0 0 10px rgb(255, 0, 119);
+      color: rgb(255, 255, 255);
+      font-family: "Tagesschrift", cursive;
     }
 
     canvas {
@@ -29,8 +31,20 @@
       box-shadow: 0 0 20px rgb(217, 0, 255);
     }
 
+    #score {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #ffffff;
+      font-family: "Tagesschrift", cursive;
+    }
+
+
+
+    #volver:hover {
+      background-color: #666;
+    }
+
     p {
-      margin-top: 20px;
       font-size: 0.9rem;
       opacity: 0.7;
     }
@@ -39,7 +53,9 @@
 <body>
   <h1>Snake 🐍</h1>
   <canvas id="game" width="400" height="400"></canvas>
-  <p>Usa las flechas para mover la serpiente</p>
+  <div id="score">Puntuación: 0</div>
+
+  <button id="volver" class="boton" onclick="window.location.href='../index.html'">volver</button>
 
   <script>
     const canvas = document.getElementById("game");
@@ -55,6 +71,7 @@
     let dy = 0;
     let food = getRandomFood();
     let running = true;
+    let score = 0;
 
     function getRandomFood() {
       return {
@@ -89,6 +106,8 @@
       snake.unshift(head);
 
       if (head.x === food.x && head.y === food.y) {
+        score++;
+        document.getElementById("score").textContent = "Puntuación: " + score;
         food = getRandomFood();
       } else {
         snake.pop();
@@ -118,6 +137,8 @@
       dx = grid;
       dy = 0;
       food = getRandomFood();
+      score = 0;
+      document.getElementById("score").textContent = "Puntuación: " + score;
     }
 
     document.addEventListener("keydown", e => {
