@@ -409,7 +409,6 @@ html, body {
   left: 50%; 
   transform: translate(-50%, -50%); 
   font-size: 2rem; 
-  color: black; 
   font-weight: bold; 
   z-index: 10; 
 }
