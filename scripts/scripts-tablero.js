@@ -427,11 +427,19 @@ campojuego.addEventListener("click", () => {
             /**
              * compartir en facebook
              */
-            function compartirEnFacebook() {
+            document.getElementById("insertar").addEventListener("click", function() {
+            compartir();
+            });
+
+
+            
+            function compartir() {
             const url = encodeURIComponent("https://mauveg931.github.io/PROYECTO1_B/"); 
             const texto = encodeURIComponent("¡He conseguido 100 puntos en 2:15 minutos en este juego de memoria!");
 
             const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${texto}`;
+
+            console.log("URL de compartir:", shareUrl); 
             window.open(shareUrl, '_blank', 'width=600,height=400');
             }
             /**
