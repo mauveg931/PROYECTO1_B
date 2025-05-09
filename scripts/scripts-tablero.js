@@ -258,7 +258,7 @@ campojuego.addEventListener("click", () => {
         function mostrarCruzVisual(carta) {
             const cruz = document.createElement('div');
             cruz.className = 'cruz-error';  
-            cruz.textContent = '❌';  
+            cruz.textContent = 'X';  
             carta.appendChild(cruz);  
 
             setTimeout(() => {
@@ -425,7 +425,7 @@ campojuego.addEventListener("click", () => {
              */
             function compartir() {
             const texto = encodeURIComponent(`¡He conseguido ${puntosFinal} puntos en Memorium!🕯️`);
-            const url = encodeURIComponent("https://tu-juego.github.io");
+            const url = encodeURIComponent("https://mauveg931.github.io/PROYECTO1_B/");
             const facebookURL = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${texto}`;
 
             window.open(facebookURL, "_blank");
