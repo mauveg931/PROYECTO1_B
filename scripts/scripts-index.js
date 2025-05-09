@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
    * reproducir audio en index al hacer un click
    */
   const activarAudio = () => {
+    audio.volume = 0.5;
       audio.play().then(() => {
           console.log("Audio reproduciéndose.");
       }).catch(error => {
