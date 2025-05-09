@@ -1,5 +1,8 @@
 /*Index*/
-
+.styled-div{
+  height: auto;
+  margin-bottom: 5%;
+}
 #compartir {
     text-decoration: none important!;
     font-family: "Tagesschrift", cursive important!;
@@ -114,8 +117,8 @@ th{
     border-radius: 5px;
     background: #000000 ;
     color: rgb(178, 176, 176);
-    width: 20%;
-    height: 5%;
+    width: auto;
+    height: auto;
     margin: 0 auto;
     margin-top: 3%;
     transition: 0.25s;
