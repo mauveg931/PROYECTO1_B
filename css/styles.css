@@ -287,14 +287,6 @@ html, body {
     padding-left: 5%;
   }
   
-  .intentos {
-    font-family: "Tagesschrift", cursive;
-    text-align: right;
-    padding-right: 5%;
-    letter-spacing: 2px;
-
-  }
-  
   .volver {
     font-family: "Tagesschrift", cursive;
     letter-spacing: 2px;
@@ -411,9 +403,20 @@ html, body {
   overflow-y: auto; 
 }
 
+.cruz-error {
+  position: absolute;  
+  top: 50%;  
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 2rem; 
+  color: black; 
+  font-weight: bold; 
+  z-index: 10; 
+}
+
 /*Historial*/
 
-.tituloHistorial{
+.titulo2{
   font-family: "Tagesschrift", cursive;
   letter-spacing: 2px;
   color: white;
@@ -449,20 +452,4 @@ html, body {
   font-family: "Tagesschrift", cursive;
   letter-spacing: 2px;
   color: white
-}
-.tituloRanking{
-  font-family: "Tagesschrift", cursive;
-  letter-spacing: 2px;
-  color: white;
-  margin-top: -3%;
-}
-.cruz-error {
-  position: absolute;  
-  top: 50%;  
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  font-size: 2rem; 
-  color: black; 
-  font-weight: bold; 
-  z-index: 10; 
 }
